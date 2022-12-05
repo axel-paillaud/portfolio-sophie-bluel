@@ -186,3 +186,18 @@ footer nav ul {
 	margin: 2em
 }
 
+/* Custom CSS start here */
+
+.filters {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin: 48px 0;
+}
+
+.filters button {
+	font-family: 'Syne';
+	color: #1D6154;
+	border: 1px solid #1D6154;
+	padding: 8px 16px;
+}
