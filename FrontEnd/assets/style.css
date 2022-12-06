@@ -279,6 +279,10 @@ nav a:hover {
 	margin-bottom: 8px;
 }
 
+.login-container a {
+	color: black;
+}
+
 .input-field {
 	margin-bottom: 32px;
 	height: 48px;
