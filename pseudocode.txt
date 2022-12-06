@@ -1,4 +1,6 @@
-TODO :Au clique sur une catégorie, regarder le dataset de cette catégorie et afficher les travaux en conséquences.
+TODO : Filtrer les catégories
+Au clique sur une catégorie, regarder le dataset de cette catégorie et afficher 
+les travaux en conséquences.
 
 - Récupérer toutes les catégories du serveur Backend, et les ajouter à un objet set.
 
@@ -6,9 +8,23 @@ TODO :Au clique sur une catégorie, regarder le dataset de cette catégorie et a
     - Récupérer la valeur du dataset.
     - Regarder si cette  valeur existe dans l'objet set de catégorie du serveur.
     - Si oui, faire :
-        - Afficher tout les travaux de la même façon que la fonction 'addWork', en ajoutant une condition sur chaque
+        - Afficher tout les travaux de la même façon que la fonction 'addWork',
+         en ajoutant une condition sur chaque
         élément pour vérifier si la catégorie correspond à la catégorie choisi.
             - Si oui, on affiche l'élément,
             - Si non, on ne l'affiche pas
 
     -Si non, afficher une erreur dans la console.
+
+TODO : Page de connexion
+Rentrer ces identifiants. Si ceux-ci sont correct, afficher un message de confirmation
+ et rediriger vers la page d'accueil.
+
+- Au clique sur "Log in", faire :
+    - Récupérer les identifiants en base de donnée avec l'API serveur (fetch)
+    - Il faut stocker le token bearer pour pouvoir ajouter et supprimer des travaux.
+    - Comparer les identifiants de l'utilisateur avec ceux en base de donnée.
+    - Si les identifiants sont ok, faire :
+        - Une redirection vers la page d'accueil en étant connecté
+    - Sinon, faire :
+        - Afficher un message d'erreur comme quoi les identifiants sont incorrects
