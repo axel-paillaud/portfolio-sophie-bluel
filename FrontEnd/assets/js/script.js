@@ -93,3 +93,4 @@ function getCategories(categoriesURI) {
 
 getAllWorks();
 getCategories(categoriesURI);
+

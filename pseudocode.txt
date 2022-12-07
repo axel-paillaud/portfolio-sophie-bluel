@@ -25,6 +25,11 @@ Rentrer ces identifiants. Si ceux-ci sont correct, afficher un message de confir
     - Il faut stocker le token bearer pour pouvoir ajouter et supprimer des travaux.
     - Comparer les identifiants de l'utilisateur avec ceux en base de donnée.
     - Si les identifiants sont ok, faire :
+        - Exporter une variable login = true et la récupérer sur les autres pages
         - Une redirection vers la page d'accueil en étant connecté
     - Sinon, faire :
         - Afficher un message d'erreur comme quoi les identifiants sont incorrects
+
+https://www.npmjs.com/package/dotenv
+https://www.wawasensei.dev/tuto/tuto-authentification-refresh-json-web-token-en-nodejs-avec-express
+https://fr.javascript.info/fetch#requetes-post
