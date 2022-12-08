@@ -26,7 +26,7 @@ form["submit-login"].addEventListener('click', function() {
         }
     })
     .then(function(value) {
-        console.log(value);
+        console.log(value.token);
     })
     .catch(function(err) {
         console.log(err);

@@ -33,3 +33,6 @@ Rentrer ces identifiants. Si ceux-ci sont correct, afficher un message de confir
 https://www.npmjs.com/package/dotenv
 https://www.wawasensei.dev/tuto/tuto-authentification-refresh-json-web-token-en-nodejs-avec-express
 https://fr.javascript.info/fetch#requetes-post
+https://stackoverflow.com/questions/57839879/how-to-handle-jsonwebtoken-from-front-end 
+
+"Browser LocalStorage ?"
