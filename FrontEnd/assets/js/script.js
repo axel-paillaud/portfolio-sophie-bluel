@@ -1,14 +1,15 @@
 const worksURI = "http://localhost:5678/api/works";
 const categoriesURI = "http://localhost:5678/api/categories";
 
-function addWork(gallery, value, relativeUrlImg) {
+function addWork(gallery, value, urlImg) {
     let figure = document.createElement("figure");
     let img = document.createElement("img");
     let figcaption = document.createElement("figcaption");
 
     //Add image, attribute and title to the DOM
-    gallery.appendChild(figure).appendChild(img).setAttribute("src", '../Backend' + relativeUrlImg);
+    gallery.appendChild(figure).appendChild(img).setAttribute('src', urlImg);
     img.setAttribute('alt', value.title);
+    img.setAttribute('crossorigin', 'anonymous');
     gallery.appendChild(figure).appendChild(figcaption).innerHTML = value.title;
 }
 
@@ -24,8 +25,7 @@ function getAllWorks() {
         let gallery = document.getElementsByClassName("gallery")[0];
         gallery.replaceChildren();
         value.forEach(value => {
-            const relativeUrlImg = new URL(value.imageUrl).pathname;
-            addWork(gallery, value, relativeUrlImg);
+            addWork(gallery, value, value.imageUrl);
         });
     })
     .catch(function(err) {
@@ -47,8 +47,7 @@ function filtersWorks(categoriesId) {
         gallery.replaceChildren();
         value.forEach(value => {
             if (value.categoryId == categoriesId) {
-                const relativeUrlImg = new URL(value.imageUrl).pathname;
-                addWork(gallery, value, relativeUrlImg);
+                addWork(gallery, value, urlImg);
             }
         });
     })
@@ -60,6 +59,7 @@ function filtersWorks(categoriesId) {
 
 //get categories froms backend, and listen for filters event
 function getCategories(categoriesURI) {
+    let categories = [];
     fetch(categoriesURI)
     .then(function(res) {
         if (res.ok) {
@@ -68,6 +68,7 @@ function getCategories(categoriesURI) {
     })
     .then(function(value) {
         const categoriesBackEnd = new Set();
+        categories[0] = 1;
         value.forEach(value => {
             categoriesBackEnd.add(value.id);
         });
