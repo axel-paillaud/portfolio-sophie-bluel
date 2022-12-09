@@ -1,97 +1,121 @@
 const worksURI = "http://localhost:5678/api/works";
 const categoriesURI = "http://localhost:5678/api/categories";
 
-function addWork(gallery, value, urlImg) {
-    let figure = document.createElement("figure");
-    let img = document.createElement("img");
-    let figcaption = document.createElement("figcaption");
-
-    //Add image, attribute and title to the DOM
-    gallery.appendChild(figure).appendChild(img).setAttribute('src', urlImg);
-    img.setAttribute('alt', value.title);
-    img.setAttribute('crossorigin', 'anonymous');
-    gallery.appendChild(figure).appendChild(figcaption).innerHTML = value.title;
-}
-
-//Get works from backend in JSON format, and add it to the DOM
-function getAllWorks() {
-    fetch(worksURI)
+//get all the works from server
+async function getWorks() {
+    const works = [];
+    await fetch(worksURI)
     .then(function(res) {
         if (res.ok) {
             return res.json();
         }
     })
     .then(function(value) {
-        let gallery = document.getElementsByClassName("gallery")[0];
-        gallery.replaceChildren();
         value.forEach(value => {
-            addWork(gallery, value, value.imageUrl);
+            works.push(value);
+        });
+        })
+    .catch(function(err) {
+        console.log("Une erreur sur la récupération des travaux est survenue");
+        console.log(err);
+    });
+    return works;
+}
+
+//add all the works to the DOM
+function addWorks(works) {
+    let gallery = document.getElementsByClassName("gallery")[0];
+
+    for (let i = 0; i < works.length; i++) {
+        let figure = document.createElement("figure");
+        let img = document.createElement("img");
+        let figcaption = document.createElement("figcaption");
+    
+        //Add image, attribute and title to the DOM
+        gallery.appendChild(figure).appendChild(img).setAttribute('src', works[i].imageUrl);
+        img.setAttribute('alt', works[i].title);
+        img.setAttribute('crossorigin', 'anonymous');
+        gallery.appendChild(figure).appendChild(figcaption).innerHTML = works[i].title;
+    }
+
+}
+
+//get all categories from server
+async function getCategories() {
+    const categories = [];
+     await fetch(categoriesURI)
+    .then(function(res) {
+        if (res.ok) {
+            return res.json();
+        }
+    })
+    .then(function(value) {
+        value.forEach(category => {
+            categories.push(category);
         });
     })
     .catch(function(err) {
-        console.log("Une erreur est survenue");
         console.log(err);
+    });
+    return categories;
+}
+
+//add categories to the DOM
+function addCategories(categories) {
+    let button = document.createElement("button");
+    let categoryElt = document.getElementsByClassName("filters")[0];
+    document.getElementsByClassName("filters")[0]
+    .appendChild(button)
+    .setAttribute('data-id', 0);
+    button.innerHTML = "Tous";
+
+    for (let i = 0; i < categories.length; i++) {
+        let button = document.createElement("button");
+        categoryElt.appendChild(button).setAttribute('data-id', categories[i].id);
+        button.innerHTML = categories[i].name;
+    }
+}
+
+//Add event listeners for click on all categories
+function addEventToCategories() {
+    document.querySelectorAll(".filters button")
+    .forEach(filter => {
+        filter.addEventListener('click', function(value) {
+            let id = value.target.dataset.id;
+            id = parseInt(id);
+            console.log(id);
+        })
     });
 }
 
+//Filters categories
+function filtersCategories() {
 
-function filtersWorks(categoriesId) {
-    fetch(worksURI)
-    .then(function(res) {
-        if (res.ok) {
-            return res.json();
-        }
-    })
-    .then(function(value) {
-        let gallery = document.getElementsByClassName("gallery")[0];
-        gallery.replaceChildren();
-        value.forEach(value => {
-            if (value.categoryId == categoriesId) {
-                addWork(gallery, value, urlImg);
-            }
-        });
-    })
-    .catch(function(err) {
-        console.log("Une erreur sur les filtres de catégories est survenue");
-        console.log(err);
+}
+
+let works = getWorks()
+.then(function(works) {
+    addWorks(works);
+    return works;
+})
+.then(function(works) {
+    getCategories()
+    .then(function(categories) {
+        addCategories(categories);
+        addEventToCategories();
     });
-}
+})
+.catch(function(err) {
+    console.log(err);
+});
 
-//get categories froms backend, and listen for filters event
-function getCategories(categoriesURI) {
-    let categories = [];
-    fetch(categoriesURI)
-    .then(function(res) {
-        if (res.ok) {
-            return res.json();
-        }
-    })
-    .then(function(value) {
-        const categoriesBackEnd = new Set();
-        categories[0] = 1;
-        value.forEach(value => {
-            categoriesBackEnd.add(value.id);
-        });
-        //add listener for all filters button
-        document.querySelectorAll(".filters button").forEach(filter => {
-            filter.addEventListener('click', function(value) {
-                let id = value.target.dataset.id;
-                id = parseInt(id);
-                if (categoriesBackEnd.has(id)) {
-                    filtersWorks(id);
-                }
-                else {
-                    getAllWorks();
-                }
-            });
-        });
-    })
-    .catch(function(err) {
-        console.log("Une erreur sur les catégories de travaux est survenue");
-        console.log(err);
-    })
-}
-
-getAllWorks();
-getCategories(categoriesURI);
-
+/*
+getCategories()
+.then(function(categories) {
+    addCategories(categories);
+    addEventToCategories();
+})
+.catch(function(err) {
+    console.log(err);
+})
+*/
