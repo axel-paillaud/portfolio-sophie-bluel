@@ -231,10 +231,15 @@ footer {
 	transition: background-color 0.2s;
 }
 
-.filters button:hover {
+.filters button:hover, .filters button:focus {
 	background-color: #1D6154;
 	color: white;
 	cursor: pointer;
+}
+
+.filters-focus {
+	background-color: #1D6154;
+	color: white;
 }
 
 nav ul {

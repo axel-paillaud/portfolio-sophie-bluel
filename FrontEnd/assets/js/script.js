@@ -1,6 +1,10 @@
 const worksURI = "http://localhost:5678/api/works";
 const categoriesURI = "http://localhost:5678/api/categories";
 
+//Global variable here to select this class only once, and not multiple time
+//inside the forEach loop of addAllWorks
+var gallery = document.getElementsByClassName("gallery")[0];
+
 //get all the works from server
 async function getWorks() {
     const works = [];
@@ -22,22 +26,28 @@ async function getWorks() {
     return works;
 }
 
-//add all the works to the DOM
-function addWorks(works) {
-    let gallery = document.getElementsByClassName("gallery")[0];
+//add all works to the DOM
+function addAllWorks(works) {
+    works.forEach(work => {
+        addWork(work);
+    });
+}
 
-    for (let i = 0; i < works.length; i++) {
-        let figure = document.createElement("figure");
-        let img = document.createElement("img");
-        let figcaption = document.createElement("figcaption");
-    
-        //Add image, attribute and title to the DOM
-        gallery.appendChild(figure).appendChild(img).setAttribute('src', works[i].imageUrl);
-        img.setAttribute('alt', works[i].title);
-        img.setAttribute('crossorigin', 'anonymous');
-        gallery.appendChild(figure).appendChild(figcaption).innerHTML = works[i].title;
-    }
+//add work to the DOM
+function addWork(works) {
 
+    let figure = document.createElement("figure");
+    let img = document.createElement("img");
+    let figcaption = document.createElement("figcaption");
+
+    //Add image, attribute and title to the DOM
+    gallery.appendChild(figure).appendChild(img)
+    .setAttribute('src', works.imageUrl);
+
+    img.setAttribute('alt', works.title);
+    img.setAttribute('crossorigin', 'anonymous');
+    gallery.appendChild(figure).appendChild(figcaption)
+    .innerHTML = works.title;
 }
 
 //get all categories from server
@@ -76,46 +86,51 @@ function addCategories(categories) {
     }
 }
 
-//Add event listeners for click on all categories
-function addEventToCategories() {
+//Add event listeners on click for all categories, and filters on click
+function addEventToCategories(works) {
     document.querySelectorAll(".filters button")
     .forEach(filter => {
         filter.addEventListener('click', function(value) {
-            let id = value.target.dataset.id;
-            id = parseInt(id);
-            console.log(id);
+            let categoryId = value.target.dataset.id;
+            categoryId = parseInt(categoryId);
+
+            //filters categories on click
+            filtersCategories(works, categoryId);
         })
     });
 }
 
 //Filters categories
-function filtersCategories() {
+function filtersCategories(works, categoryId) {
+    let gallery = document.getElementsByClassName("gallery")[0];
+    gallery.replaceChildren();
 
+    if (categoryId == 0) {
+        addAllWorks(works);
+    }
+    else {
+        works.forEach(work => {
+            if (work["category"].id == categoryId) {
+                addWork(work);
+            }
+        });
+    }
 }
 
-let works = getWorks()
+//execution of functions goes here
+
+getWorks()
 .then(function(works) {
-    addWorks(works);
+    addAllWorks(works);
     return works;
 })
 .then(function(works) {
     getCategories()
     .then(function(categories) {
         addCategories(categories);
-        addEventToCategories();
+        addEventToCategories(works);
     });
 })
 .catch(function(err) {
     console.log(err);
 });
-
-/*
-getCategories()
-.then(function(categories) {
-    addCategories(categories);
-    addEventToCategories();
-})
-.catch(function(err) {
-    console.log(err);
-})
-*/
