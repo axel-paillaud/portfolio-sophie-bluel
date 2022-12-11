@@ -157,7 +157,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"], input[type="button"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	padding: 12px 48px;
@@ -170,8 +170,9 @@ input[type="submit"]{
 	border: none;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, input[type="button"]:hover {
 	cursor: pointer;
+	background-color: #0E2F28;
 }
 
 footer nav ul {
@@ -278,7 +279,7 @@ nav a:hover {
 }
 
 .login-container h2 {
-	margin: 80px 0 40px 0;
+	margin: 65px 0 40px 0;
 }
 
 .login-container label {
@@ -295,4 +296,40 @@ nav a:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	border: none;
 	font-size: 1.2em;
+}
+
+/* Error message log in form */
+.error-msg {
+	background-color: #d07b7bcf;
+	margin-top: 16px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 380px;
+}
+
+/* Top-header edition mode */
+.header-edition {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(14, 13, 13);
+}
+
+.header-edition span {
+	color: white;
+	margin: 20px;
+}
+
+.header-edition span i {
+	margin: 0 8px;
+}
+
+.header-edition button {
+	padding: 8px 20px;
+	border-radius: 60px;
+	cursor: pointer;
+	border-style: none;
+	background-color: white;
 }

@@ -1,5 +1,6 @@
 const loginURI = "http://localhost:5678/api/users/login";
 const form = document.getElementsByClassName("login")[0].elements;
+let alreadyMsgError = false;
 
 //fake user for test, we have to get the input from the login form
 const sophie = {
@@ -16,32 +17,49 @@ function getUserLog() {
         password: password
     }
 
-    console.log(user);
     return user;
 }
 
-form["submit-login"].addEventListener('click', function() {
-    getUserLog();
+function showErrorMsg() {
+    let errorMsg = "Erreur dans l'identifiant ou le mot de passe";
+    let p = document.createElement("p");
+
+    if (!alreadyMsgError) {
+        document.getElementById('error-msg-log')
+        .appendChild(p).classList.add("error-msg");
+        p.innerHTML = errorMsg;
+        alreadyMsgError = true;
+    }
+
+}
+
+form["submit-login"].addEventListener('click', function(event) {
+    event.preventDefault();
+    let user = getUserLog();
     fetch(loginURI, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(sophie)
+        body: JSON.stringify(user)
     })
     .then(function(res) {
         if (res.ok) {
             return res.json();
         }
         else {
-            console.log("error");
+            //here show the html error message
+            showErrorMsg();
             return 0;
         }
     })
     .then(function(value) {
-        sessionStorage.setItem("token", value.token);
+        if (value !== 0) {
+            sessionStorage.setItem("token", value.token);
+            location.href = "index.html";
+        }
     })
     .catch(function(err) {
         console.log(err);
     })
-});
+}); 
