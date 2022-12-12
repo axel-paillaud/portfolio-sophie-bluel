@@ -109,10 +109,7 @@ h2{
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -309,7 +306,7 @@ nav a:hover {
 	min-width: 380px;
 }
 
-/* Top-header edition mode */
+/*edition mode */
 .header-edition {
 	display: flex;
 	justify-content: center;
@@ -332,4 +329,11 @@ nav a:hover {
 	cursor: pointer;
 	border-style: none;
 	background-color: white;
+}
+
+.my-project {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 120px 0 80px 0;
 }
