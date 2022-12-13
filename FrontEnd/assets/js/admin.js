@@ -19,9 +19,7 @@ function addHeaderEditionMode(element) {
     element.classList.add('header-edition');
 
     element.appendChild(span)
-    .appendChild(icon)
-    .classList.add('fa-solid', 'fa-pen-to-square');
-    icon.insertAdjacentHTML('afterend', 'Mode édition');
+    addIconWord(span, icon, 'Mode édition');
 
     element.appendChild(button).innerHTML = "publier les changements";
 }
@@ -30,7 +28,13 @@ function addEditProject() {
     let element = document.getElementById('edit-project');
     let icon = document.createElement('i');
 
+    addIconWord(element, icon, 'modifier');
+}
+
+//For adding the same "modifier" mode with edit icon
+function addIconWord(element, icon, string) {
     element.appendChild(icon).classList.add('fa-solid', 'fa-pen-to-square');
+    icon.insertAdjacentHTML('afterend', string);
 }
 
 if (token != null) {
