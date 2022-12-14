@@ -30,7 +30,6 @@ function showErrorMsg() {
         p.innerHTML = errorMsg;
         alreadyMsgError = true;
     }
-
 }
 
 form["submit-login"].addEventListener('click', function(event) {

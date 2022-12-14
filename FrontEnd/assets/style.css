@@ -354,6 +354,7 @@ nav a:hover {
 
 /*edit modal*/
 /*opacity background */
+/*
 .modal {
 	position: fixed;
 	display: flex;
@@ -367,6 +368,7 @@ nav a:hover {
 }
 
 /* modal contener */
+/*
 .modal-wrapper {
 	overflow: auto;
 	background-color: white;
