@@ -4,10 +4,10 @@ const categoriesURI = "http://localhost:5678/api/categories";
 //Global variable here to select this class only once, and not multiple time
 //inside the forEach loop of addAllWorks
 var gallery = document.getElementsByClassName("gallery")[0];
+var works = [];
 
 //get all the works from server
 async function getWorks() {
-    const works = [];
     await fetch(worksURI)
     .then(function(res) {
         if (res.ok) {
@@ -15,39 +15,38 @@ async function getWorks() {
         }
     })
     .then(function(value) {
-        value.forEach(value => {
-            works.push(value);
-        });
+        works = value;
+        return works;
         })
     .catch(function(err) {
         console.log("Une erreur sur la récupération des travaux est survenue");
         console.log(err);
     });
-    return works;
 }
 
 //add all works to the DOM
-function addAllWorks(works) {
+function addAllWorks(works, element) {
     works.forEach(work => {
-        addWork(work);
+        addWork(work, element, work.title);
     });
 }
 
 //add work to the DOM
-function addWork(works) {
+function addWork(works, element, title) {
 
     let figure = document.createElement("figure");
     let img = document.createElement("img");
     let figcaption = document.createElement("figcaption");
 
     //Add image, attribute and title to the DOM
-    gallery.appendChild(figure).appendChild(img)
+    element.appendChild(figure).appendChild(img)
     .setAttribute('src', works.imageUrl);
 
     img.setAttribute('alt', works.title);
     img.setAttribute('crossorigin', 'anonymous');
-    gallery.appendChild(figure).appendChild(figcaption)
-    .innerHTML = works.title;
+    figure.appendChild(figcaption)
+    .innerHTML = title;
+    return figure;
 }
 
 //get all categories from server
@@ -87,7 +86,7 @@ function addCategories(categories) {
 }
 
 //Add event listeners on click for all categories, and filters on click
-function addEventToCategories(works) {
+function addEventToCategories(works, element, title) {
     document.querySelectorAll(".filters button")
     .forEach(filter => {
         filter.addEventListener('click', function(value) {
@@ -95,23 +94,22 @@ function addEventToCategories(works) {
             categoryId = parseInt(categoryId);
 
             //filters categories on click
-            filtersCategories(works, categoryId);
+            filtersCategories(works, categoryId, element, title);
         })
     });
 }
 
 //Filters categories
-function filtersCategories(works, categoryId) {
-    let gallery = document.getElementsByClassName("gallery")[0];
+function filtersCategories(works, categoryId, element, title) {
     gallery.replaceChildren();
 
     if (categoryId == 0) {
-        addAllWorks(works);
+        addAllWorks(works, element);
     }
     else {
         works.forEach(work => {
             if (work["category"].id == categoryId) {
-                addWork(work);
+                addWork(work, element, title);
             }
         });
     }
@@ -119,17 +117,18 @@ function filtersCategories(works, categoryId) {
 
 //execution of functions goes here
 
-getWorks()
-.then(function(works) {
-    addAllWorks(works);
+const promiseWorks = getWorks()
+.then(function() {
+    addAllWorks(works, gallery);
     return works;
 })
 .then(function(works) {
     getCategories()
     .then(function(categories) {
         addCategories(categories);
-        addEventToCategories(works);
+        addEventToCategories(works, gallery, works.title);
     });
+    return works;
 })
 .catch(function(err) {
     console.log(err);

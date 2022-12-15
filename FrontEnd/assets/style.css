@@ -86,6 +86,20 @@ h2{
 	color: #1D6154
 }
 
+.btn-primary {
+	font-family: 'Syne';
+	font-weight: 700;
+	padding: 12px 48px;
+	color: white;
+	background-color: #1D6154;
+	margin : 1.8em auto ;
+	text-align: center;
+	border-radius: 60px;
+	font-size: 1.2em;
+	border: none;
+	cursor: pointer;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -222,6 +236,7 @@ footer {
 	color: #1D6154;
 	border: 1px solid #1D6154;
 	white-space: nowrap;
+	margin: 0;
 	padding: 8px 16px;
 	border-radius: 60px;
 	background-color: white;
@@ -341,6 +356,8 @@ nav a:hover {
 /*Style the edit button to edit project when login */
 .my-project a {
 	cursor: pointer;
+	text-decoration: none;
+	color: black;
 }
 
 .my-project a:hover {
@@ -354,7 +371,6 @@ nav a:hover {
 
 /*edit modal*/
 /*opacity background */
-/*
 .modal {
 	position: fixed;
 	display: flex;
@@ -368,14 +384,79 @@ nav a:hover {
 }
 
 /* modal contener */
-/*
 .modal-wrapper {
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 	background-color: white;
 	border-radius: 10px;
-	width: 600px;
+	width: 630px;
 	max-width: calc(100vw - 20px);
-	height: 700px;
+	height: 730px;
 	max-height: calc(100vh - 20px);
-	padding: 64px 100px 40px 100px;
+	padding: 56px 100px 40px 100px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#close-modal {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 20px;
+	position: absolute;
+	top: 24px;
+	right: 32px;
+}
+
+.modal-wrapper h2 {
+	font-family: 'Work Sans';
+	color: black;
+	font-size: 26px;
+	margin-bottom: 40px;
+}
+
+.modal-wrapper hr {
+	width: 100%;
+	border-top-width: 0px;
+	color: #B3B3B3;
+	margin-top: 40px;
+}
+
+.delete-link {
+	color: #D65353;
+	text-decoration: none;
+	font-family: 'Syne';
+}
+
+.gallery-modal {
+	display: grid;
+	grid-column-gap: 8px;
+	grid-row-gap: 16px;
+	width: 100%;
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.gallery-modal img {
+	width: 100%;
+}
+
+.gallery-modal figure {
+	position: relative;
+}
+
+.edit-icons {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	background: black;
+	border-radius: 4px;
+	padding: 4px;
+	border-width: 0;
+	cursor: pointer;
+}
+
+.edit-icons i {
+	color: white;
 }

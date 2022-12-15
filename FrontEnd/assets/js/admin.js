@@ -1,4 +1,8 @@
-let token = sessionStorage.getItem("token");
+const token = sessionStorage.getItem("token");
+const galleryModal = document.getElementsByClassName('gallery-modal')[0];
+const btnCloseModal = document.getElementById('close-modal');
+let modal = null;
+
 
 function changeInnerHtml(element, newInnerHtml) {
     element.innerHTML = newInnerHtml;
@@ -24,11 +28,32 @@ function addHeaderEditionMode(element) {
     element.appendChild(button).innerHTML = "publier les changements";
 }
 
-function addEditProject() {
-    let element = document.getElementById('edit-project');
-    let icon = document.createElement('i');
+const openModal = function (e) {
+    e.preventDefault();
+    const target = document.querySelector(e.target.getAttribute('href'));
+    target.style.display = null;
+    modal = target;
+    modal.addEventListener('click', closeModal);
+    btnCloseModal.addEventListener('click', closeModal);
+}
 
-    addIconWord(element, icon, 'modifier');
+const closeModal = function(e) {
+    if (modal === null) return;
+    e.preventDefault();
+    modal.style.display = 'none';
+    modal.removeEventListener('click', closeModal);
+    btnCloseModal.removeEventListener('click', closeModal);
+    modal = null;
+}
+
+function addEditProject() {
+    let elements = document.querySelectorAll('.js-edit-project');
+
+    elements.forEach(a => {
+        let icon = document.createElement('i');
+        addIconWord(a, icon, 'modifier');
+        a.addEventListener('click', openModal);
+    });
 }
 
 //For adding the same "modifier" mode with edit icon
@@ -47,3 +72,17 @@ if (token != null) {
     addHeaderEditionMode(headerEditionElt);
     addEditProject();
 };
+
+promiseWorks.then(function(works) {
+    works.forEach(work => {
+        let iconButton = document.createElement('button');
+        let icon = document.createElement('i');
+        let figure = addWork(work, galleryModal, "éditer");
+
+        figure.appendChild(iconButton);
+        iconButton.classList.add('edit-icons');
+
+        iconButton.appendChild(icon)
+        .classList.add("fa-regular", "fa-trash-can");
+    });
+})
