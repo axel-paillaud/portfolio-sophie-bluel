@@ -94,13 +94,13 @@ function addEventToCategories(works, element, title) {
             categoryId = parseInt(categoryId);
 
             //filters categories on click
-            filtersCategories(works, categoryId, element, title);
+            filtersCategories(works, categoryId, element);
         })
     });
 }
 
 //Filters categories
-function filtersCategories(works, categoryId, element, title) {
+function filtersCategories(works, categoryId, element) {
     gallery.replaceChildren();
 
     if (categoryId == 0) {
@@ -109,7 +109,7 @@ function filtersCategories(works, categoryId, element, title) {
     else {
         works.forEach(work => {
             if (work["category"].id == categoryId) {
-                addWork(work, element, title);
+                addWork(work, element, work.title);
             }
         });
     }
@@ -126,7 +126,8 @@ const promiseWorks = getWorks()
     getCategories()
     .then(function(categories) {
         addCategories(categories);
-        addEventToCategories(works, gallery, works.title);
+        console.log(works);
+        addEventToCategories(works, gallery);
     });
     return works;
 })
