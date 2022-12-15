@@ -30,20 +30,30 @@ function addHeaderEditionMode(element) {
 
 const openModal = function (e) {
     e.preventDefault();
+    document.getElementById('edit-modal').dataset.show = "true";
     const target = document.querySelector(e.target.getAttribute('href'));
     target.style.display = null;
     modal = target;
     modal.addEventListener('click', closeModal);
     btnCloseModal.addEventListener('click', closeModal);
+    document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
 }
 
 const closeModal = function(e) {
     if (modal === null) return;
     e.preventDefault();
-    modal.style.display = 'none';
+    document.getElementById('edit-modal').dataset.show = "false";
+    window.setTimeout(function() {
+        modal.style.display = 'none';
+        modal = null;
+    }, 500);
     modal.removeEventListener('click', closeModal);
     btnCloseModal.removeEventListener('click', closeModal);
-    modal = null;
+    document.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
+}
+
+const stopPropagation = function(e) {
+    e.stopPropagation();
 }
 
 function addEditProject() {

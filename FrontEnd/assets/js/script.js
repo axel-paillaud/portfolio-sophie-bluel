@@ -126,7 +126,6 @@ const promiseWorks = getWorks()
     getCategories()
     .then(function(categories) {
         addCategories(categories);
-        console.log(works);
         addEventToCategories(works, gallery);
     });
     return works;
