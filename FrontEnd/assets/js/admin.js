@@ -1,3 +1,5 @@
+//This JavaScript file load all admins modules and panels, in case we are login
+
 const token = sessionStorage.getItem("token");
 const galleryModal = document.getElementsByClassName('gallery-modal')[0];
 const btnCloseModal = document.getElementById('close-modal');
@@ -30,9 +32,9 @@ function addHeaderEditionMode(element) {
 
 const openModal = function (e) {
     e.preventDefault();
-    document.getElementById('edit-modal').dataset.show = "true";
+    document.getElementById('edit-modal').dataset.show = "true"; //for animation play
     const target = document.querySelector(e.target.getAttribute('href'));
-    target.style.display = null;
+    target.style.display = null; //remove the display : none
     modal = target;
     modal.addEventListener('click', closeModal);
     btnCloseModal.addEventListener('click', closeModal);
@@ -40,10 +42,10 @@ const openModal = function (e) {
 }
 
 const closeModal = function(e) {
-    if (modal === null) return;
+    if (modal === null) return; //if already no modal, stop the function
     e.preventDefault();
     document.getElementById('edit-modal').dataset.show = "false";
-    window.setTimeout(function() {
+    window.setTimeout(function() { //to delay and let time for animation close
         modal.style.display = 'none';
         modal = null;
     }, 500);
@@ -52,6 +54,7 @@ const closeModal = function(e) {
     document.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
 }
 
+//close modal only when click outside the .modal-wrapper
 const stopPropagation = function(e) {
     e.stopPropagation();
 }
