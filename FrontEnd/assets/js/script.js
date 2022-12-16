@@ -6,6 +6,11 @@ const categoriesURI = "http://localhost:5678/api/categories";
 var gallery = document.getElementsByClassName("gallery")[0];
 var works = [];
 
+//delete all works in the DOM
+function resetWorks(element) {
+    element.replaceChildren();
+}
+
 //get all the works from server
 async function getWorks() {
     await fetch(worksURI)
@@ -101,7 +106,7 @@ function addEventToCategories(works, element, title) {
 
 //Filters categories
 function filtersCategories(works, categoryId, element) {
-    gallery.replaceChildren();
+    resetWorks(gallery);
 
     if (categoryId == 0) {
         addAllWorks(works, element);

@@ -1,5 +1,6 @@
 //This JavaScript file load all admins modules and panels, in case we are login
 const token = sessionStorage.getItem("token");
+console.log(token);
 
 //when logged in, change text, for example 'login' to 'logout'
 function changeInnerHtml(element, newInnerHtml) {

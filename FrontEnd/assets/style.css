@@ -113,7 +113,7 @@ h2{
 	width: 80%;
 }
 
-#introducton figcaption {
+#introduction figcaption {
 	margin: auto;
 	width: 80%;
 }
@@ -462,7 +462,7 @@ nav a:hover {
 	position: relative;
 }
 
-.edit-icons {
+.delete-icons {
 	position: absolute;
 	top: 8px;
 	right: 8px;
@@ -473,7 +473,7 @@ nav a:hover {
 	cursor: pointer;
 }
 
-.edit-icons i {
+.delete-icons i {
 	color: white;
 }
 

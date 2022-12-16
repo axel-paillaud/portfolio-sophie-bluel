@@ -2,7 +2,7 @@
 const modalWrapper = document.getElementsByClassName('modal-wrapper')[0];
 let modal = null;
 
-//execute only if we are logged in
+//load and execute only if we are logged in
 if (token != null) {
     const openModal = function (e) {
         e.preventDefault();
@@ -61,6 +61,27 @@ if (token != null) {
         deleteGallery.innerHTML = "Supprimer la galerie";
     }
 
+    async function deleteWork(id) {
+        await fetch(worksURI + "/" + id, {
+            method: "DELETE",
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            }
+        })
+        .then(function() {
+            resetWorks(galleryModal);
+        })
+        .catch(function(err) {
+            console.log("Une erreur sur la suppression d'un travail est survenue");
+            console.log(err);
+        })
+    }
+
+    function addDeleteIcons() {
+        let iconButton = document.createElement('button');
+        let icon = document.createElement('i');
+    }
+
     addGalleryContent();
     const btnCloseModal = document.getElementById('close-modal');
     const galleryModal = document.getElementsByClassName('gallery-modal')[0];
@@ -73,10 +94,22 @@ if (token != null) {
             let figure = addWork(work, galleryModal, "éditer");
     
             figure.appendChild(iconButton);
-            iconButton.classList.add('edit-icons');
+            iconButton.classList.add('delete-icons');
+            iconButton.setAttribute('data-id', work.id);
+            iconButton.addEventListener('click',function(event) {
+                let id = event.target.dataset.id;
+                const promiseDeleteWorks = deleteWork(id);
+                promiseDeleteWorks.then(function() {
+                    getWorks();
+                })
+                .then(function() {
+                    console.log("hello");
+                })
+            });
     
             iconButton.appendChild(icon)
             .classList.add("fa-regular", "fa-trash-can");
+            icon.style.pointerEvents = "none";
         });
     })
 }
