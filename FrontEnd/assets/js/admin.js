@@ -1,10 +1,5 @@
 //This JavaScript file load all admins modules and panels, in case we are login
-
 const token = sessionStorage.getItem("token");
-const galleryModal = document.getElementsByClassName('gallery-modal')[0];
-const btnCloseModal = document.getElementById('close-modal');
-let modal = null;
-
 
 function changeInnerHtml(element, newInnerHtml) {
     element.innerHTML = newInnerHtml;
@@ -30,46 +25,17 @@ function addHeaderEditionMode(element) {
     element.appendChild(button).innerHTML = "publier les changements";
 }
 
-const openModal = function (e) {
-    e.preventDefault();
-    document.getElementById('edit-modal').dataset.show = "true"; //for animation play
-    const target = document.querySelector(e.target.getAttribute('href'));
-    target.style.display = null; //remove the display : none
-    modal = target;
-    modal.addEventListener('click', closeModal);
-    btnCloseModal.addEventListener('click', closeModal);
-    document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
-}
-
-const closeModal = function(e) {
-    if (modal === null) return; //if already no modal, stop the function
-    e.preventDefault();
-    document.getElementById('edit-modal').dataset.show = "false";
-    window.setTimeout(function() { //to delay and let time for animation close
-        modal.style.display = 'none';
-        modal = null;
-    }, 500);
-    modal.removeEventListener('click', closeModal);
-    btnCloseModal.removeEventListener('click', closeModal);
-    document.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
-}
-
-//close modal only when click outside the .modal-wrapper
-const stopPropagation = function(e) {
-    e.stopPropagation();
-}
-
-function addEditProject() {
-    let elements = document.querySelectorAll('.js-edit-project');
+//add "edit" with icon button to all class 'js-edit'
+function addEditButtons() {
+    let elements = document.querySelectorAll('.js-edit');
 
     elements.forEach(a => {
         let icon = document.createElement('i');
         addIconWord(a, icon, 'modifier');
-        a.addEventListener('click', openModal);
     });
 }
 
-//For adding the same "modifier" mode with edit icon
+//to add the same "modifier" mode with edit icon
 function addIconWord(element, icon, string) {
     element.appendChild(icon).classList.add('fa-solid', 'fa-pen-to-square');
     icon.insertAdjacentHTML('afterend', string);
@@ -83,19 +49,5 @@ if (token != null) {
     changeInnerHtml(login, "logout");
     logOut(login);
     addHeaderEditionMode(headerEditionElt);
-    addEditProject();
+    addEditButtons();
 };
-
-promiseWorks.then(function(works) {
-    works.forEach(work => {
-        let iconButton = document.createElement('button');
-        let icon = document.createElement('i');
-        let figure = addWork(work, galleryModal, "éditer");
-
-        figure.appendChild(iconButton);
-        iconButton.classList.add('edit-icons');
-
-        iconButton.appendChild(icon)
-        .classList.add("fa-regular", "fa-trash-can");
-    });
-})

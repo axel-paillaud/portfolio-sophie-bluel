@@ -206,6 +206,17 @@ body {
 	background-color: #FFFEF8;
 }
 
+.base-link {
+	text-decoration: none;
+	color: black;
+	font-family: 'Work Sans';
+	cursor: pointer;
+}
+
+.base-link:hover {
+	color: rgb(78, 78, 78);
+}
+
 .body-flex {
 	display: flex;
 	flex-direction: column;
@@ -354,10 +365,9 @@ nav a:hover {
 }
 
 /*Style the edit button to edit project when login */
-.my-project a {
-	cursor: pointer;
-	text-decoration: none;
-	color: black;
+#introduction figcaption {
+	margin: 16px auto;
+	width: 80%;
 }
 
 .my-project a:hover {

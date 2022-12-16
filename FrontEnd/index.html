@@ -25,19 +25,20 @@
 		</nav>
 	</header>
 <main>
-	<aside id="edit-modal" class="modal" data-show="false" style="display: none;">
+	<div id="edit-modal" class="modal" data-show="false" style="display: none;">
 		<article class="modal-wrapper js-modal-stop">
-			<button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+<!-- 		<button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
 			<h2>Galerie photo</h2>
 			<div class="gallery-modal"></div>
 			<hr>
 			<button class="btn-primary">Ajouter une photo</button>
-			<a class="delete-link" href="#">Supprimer la  galerie</a>
+			<a class="delete-link" href="#">Supprimer la  galerie</a> -->
 		</article>
-	</aside>
+	</div>
 	<section id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
+			<figcaption class="js-edit base-link"></figcaption>
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -53,7 +54,7 @@
 	<section id="portfolio">
 		<section class="my-project">
 			<h2>Mes Projets</h2>
-			<a class="js-edit-project" href="#edit-modal"></a>
+			<a class="js-edit js-modal base-link" href="#edit-modal"></a>
 		</section>
 		<div class="filters">
 		</div>
@@ -83,5 +84,6 @@
 </footer>
 <script src="./assets/js/script.js" type="text/javascript"></script>
 <script src="./assets/js/admin.js" type="text/javascript"></script>
+<script src="./assets/js/modal.js" type="text/javascript"></script>
 </body>
 </html>
