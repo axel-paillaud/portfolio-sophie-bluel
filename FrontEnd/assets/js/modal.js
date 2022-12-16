@@ -2,7 +2,7 @@
 const modalWrapper = document.getElementsByClassName('modal-wrapper')[0];
 let modal = null;
 
-//execute only if we are log-in
+//execute only if we are logged in
 if (token != null) {
     const openModal = function (e) {
         e.preventDefault();

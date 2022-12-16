@@ -113,6 +113,11 @@ h2{
 	width: 80%;
 }
 
+#introducton figcaption {
+	margin: auto;
+	width: 80%;
+}
+
 #introduction article {
 	flex: 1
 }
@@ -361,15 +366,14 @@ nav a:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 120px 0 80px 0;
+	margin: 112px 0 80px 0;
+}
+
+.my-project h2 {
+	margin: 0 24px;
 }
 
 /*Style the edit button to edit project when login */
-#introduction figcaption {
-	margin: 16px auto;
-	width: 80%;
-}
-
 .my-project a:hover {
 	color: rgb(78, 78, 78);
 }
