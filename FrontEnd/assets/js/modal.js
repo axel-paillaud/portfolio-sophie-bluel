@@ -61,7 +61,9 @@ if (token != null) {
         deleteGallery.innerHTML = "Supprimer la galerie";
     }
 
-    async function deleteWork(id) {
+    const deleteWorkAndRefresh = async function(e)  {
+        let id = e.target.dataset.id;
+        console.log(id);
         await fetch(worksURI + "/" + id, {
             method: "DELETE",
             headers: {
@@ -70,6 +72,16 @@ if (token != null) {
         })
         .then(function() {
             resetWorks(galleryModal);
+            console.log(works);
+            getWorks() //get new works array
+            .then(function() { //then add this array to the DOM
+            works.forEach(work => {
+                let figure = addWork(work, galleryModal, "éditer");
+                let iconButton = addDeleteIcons(figure, work);
+        
+                iconButton.addEventListener('click',deleteWorkAndRefresh);        
+            });
+            })
         })
         .catch(function(err) {
             console.log("Une erreur sur la suppression d'un travail est survenue");
@@ -77,9 +89,19 @@ if (token != null) {
         })
     }
 
-    function addDeleteIcons() {
+    function addDeleteIcons(element, work) {
         let iconButton = document.createElement('button');
         let icon = document.createElement('i');
+
+        element.appendChild(iconButton);
+        iconButton.classList.add('delete-icons');
+        iconButton.setAttribute('data-id', work.id);
+
+        iconButton.appendChild(icon)
+        .classList.add("fa-regular", "fa-trash-can");
+        icon.style.pointerEvents = "none";
+
+        return iconButton;
     }
 
     addGalleryContent();
@@ -89,27 +111,14 @@ if (token != null) {
     
     promiseWorks.then(function(works) {
         works.forEach(work => {
-            let iconButton = document.createElement('button');
-            let icon = document.createElement('i');
             let figure = addWork(work, galleryModal, "éditer");
+            let iconButton = addDeleteIcons(figure, work);
     
-            figure.appendChild(iconButton);
-            iconButton.classList.add('delete-icons');
-            iconButton.setAttribute('data-id', work.id);
-            iconButton.addEventListener('click',function(event) {
-                let id = event.target.dataset.id;
-                const promiseDeleteWorks = deleteWork(id);
-                promiseDeleteWorks.then(function() {
-                    getWorks();
-                })
-                .then(function() {
-                    console.log("hello");
-                })
-            });
-    
-            iconButton.appendChild(icon)
-            .classList.add("fa-regular", "fa-trash-can");
-            icon.style.pointerEvents = "none";
+            iconButton.addEventListener('click',deleteWorkAndRefresh);
         });
     })
+    .catch(function(err) {
+        console.log("L'erreur suivante sur l'ajout des travaux dans la fenêtre modale est survenue :");
+        console.log(err);
+    });
 }
