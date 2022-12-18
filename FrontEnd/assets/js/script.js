@@ -7,7 +7,7 @@ var gallery = document.getElementsByClassName("gallery")[0];
 var works = [];
 
 //delete all works in the DOM
-function resetWorks(element) {
+function resetDOM(element) {
     element.replaceChildren();
 }
 
@@ -106,7 +106,7 @@ function addEventToCategories(works, element, title) {
 
 //Filters categories
 function filtersCategories(works, categoryId, element) {
-    resetWorks(gallery);
+    resetDOM(gallery);
 
     if (categoryId == 0) {
         addAllWorks(works, element);

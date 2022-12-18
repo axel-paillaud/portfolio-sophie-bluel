@@ -27,12 +27,27 @@
 <main>
 	<div id="edit-modal" class="modal" data-show="false" style="display: none;">
 		<article class="modal-wrapper js-modal-stop">
-<!-- 		<button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-			<h2>Galerie photo</h2>
-			<div class="gallery-modal"></div>
-			<hr>
-			<button class="btn-primary">Ajouter une photo</button>
-			<a class="delete-link" href="#">Supprimer la  galerie</a> -->
+		<button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+		<button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+			<h2>Ajout photo</h2>
+			<div class="add-img"></div>
+			<form class="form-primary" method="post">
+				<label for="title">Titre</label>
+				<input class="input-field" name="title" type="text">
+				<label for="category">Catégorie</label>
+				<div class="dropdown">
+					<button class="input-field dropbtn" type="button" name="category">
+						<i class="fa-solid fa-chevron-down"></i>
+					</button>
+					<ul id="js-dropdown" class="dropdown-content">
+						<li>Objets</li>
+						<li>Appartements</li>
+						<li>Hotels & restaurants</li>
+					</ul>
+				</div>
+				<hr>
+				<button type="submit" class="btn-primary">Valider</button>
+			</form>
 		</article>
 	</div>
 	<section id="introduction">

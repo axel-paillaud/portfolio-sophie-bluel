@@ -55,6 +55,7 @@ if (token != null) {
         modalWrapper.appendChild(galleryContener).classList.add("gallery-modal");
         modalWrapper.appendChild(lineBreak);
         modalWrapper.appendChild(addImgButton).classList.add("btn-primary");
+        addImgButton.id = "add-img-btn";
         addImgButton.innerHTML = "Ajouter une photo";
         modalWrapper.appendChild(deleteGallery).classList.add("delete-link");
         deleteGallery.setAttribute('href', "#");
@@ -71,7 +72,7 @@ if (token != null) {
             }
         })
         .then(function() {
-            resetWorks(galleryModal);
+            resetDOM(galleryModal);
             console.log(works);
             getWorks() //get new works array
             .then(function() { //then add this array to the DOM
@@ -104,7 +105,8 @@ if (token != null) {
         return iconButton;
     }
 
-    addGalleryContent();
+   /*  addGalleryContent(); */
+    const btnAddImg = document.getElementById('add-img-btn');
     const btnCloseModal = document.getElementById('close-modal');
     const galleryModal = document.getElementsByClassName('gallery-modal')[0];
     eventModal();
