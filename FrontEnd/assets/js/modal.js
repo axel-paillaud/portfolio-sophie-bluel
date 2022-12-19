@@ -105,13 +105,24 @@ if (token != null) {
         return iconButton;
     }
 
+    //ne fonctionne pas car mauvaise selection pour le display = block, le faire
+    //sur le button avec class dropbtn
+    function addEventDropdownBtn() {
+        let dropdown = document.getElementById('js-dropdown');
+        dropdown.addEventListener('click', function(event) {
+            dropdown.style.display = "block";
+            console.log("hello");
+        })
+    }
+
    /*  addGalleryContent(); */
     const btnAddImg = document.getElementById('add-img-btn');
     const btnCloseModal = document.getElementById('close-modal');
     const galleryModal = document.getElementsByClassName('gallery-modal')[0];
     eventModal();
     
-    promiseWorks.then(function(works) {
+    //uncomment when add work feature is finish
+/*     promiseWorks.then(function(works) {
         works.forEach(work => {
             let figure = addWork(work, galleryModal, "éditer");
             let iconButton = addDeleteIcons(figure, work);
@@ -122,5 +133,7 @@ if (token != null) {
     .catch(function(err) {
         console.log("L'erreur suivante sur l'ajout des travaux dans la fenêtre modale est survenue :");
         console.log(err);
-    });
+    }); */
 }
+
+addEventDropdownBtn();

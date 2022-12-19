@@ -36,3 +36,15 @@ https://fr.javascript.info/fetch#requetes-post
 https://stackoverflow.com/questions/57839879/how-to-handle-jsonwebtoken-from-front-end 
 
 "Browser LocalStorage ?"
+
+DROPDOWN MENU
+Quand on clique sur le boutons "catégories", faire :
+    - Apparaitre le menu (display: block)
+
+Si on clique sur un des éléments du dropdown menu, ou en dehors du dropdown menu,
+le fermer.
+
+Si on clique sur un des éléments du menu :
+    - Ajouter le texte de l'élément dans le bouton (innerHTML)
+    - Ajouter un data-id de la catégories correspondante, pour pouvoir
+    la récupérer dans le submit par la suite
