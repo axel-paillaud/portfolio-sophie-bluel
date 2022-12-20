@@ -16,19 +16,10 @@ les travaux en conséquences.
 
     -Si non, afficher une erreur dans la console.
 
-TODO : Page de connexion
-Rentrer ces identifiants. Si ceux-ci sont correct, afficher un message de confirmation
- et rediriger vers la page d'accueil.
+TODO ERREUR
+Si on clique sur l'icône modifier plutôt que sur le mot, on a une erreur et la
+modale ne s'ouvre pas.
 
-- Au clique sur "Log in", faire :
-    - Récupérer les identifiants en base de donnée avec l'API serveur (fetch)
-    - Il faut stocker le token bearer pour pouvoir ajouter et supprimer des travaux.
-    - Comparer les identifiants de l'utilisateur avec ceux en base de donnée.
-    - Si les identifiants sont ok, faire :
-        - Exporter une variable login = true et la récupérer sur les autres pages
-        - Une redirection vers la page d'accueil en étant connecté
-    - Sinon, faire :
-        - Afficher un message d'erreur comme quoi les identifiants sont incorrects
 
 https://www.npmjs.com/package/dotenv
 https://www.wawasensei.dev/tuto/tuto-authentification-refresh-json-web-token-en-nodejs-avec-express
@@ -48,3 +39,7 @@ Si on clique sur un des éléments du menu :
     - Ajouter le texte de l'élément dans le bouton (innerHTML)
     - Ajouter un data-id de la catégories correspondante, pour pouvoir
     la récupérer dans le submit par la suite
+
+TODO
+Enlever les eventListeners sur le dropdown button à l'ouverture/fermeture
+de l'élément.

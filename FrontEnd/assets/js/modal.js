@@ -1,6 +1,7 @@
 //manage modal window
 const modalWrapper = document.getElementsByClassName('modal-wrapper')[0];
 let modal = null;
+let dropDownMenu = null;
 
 //load and execute only if we are logged in
 if (token != null) {
@@ -31,6 +32,13 @@ if (token != null) {
     //close modal only when click outside the .modal-wrapper
     const stopPropagation = function(e) {
         e.stopPropagation();
+    }
+
+    const closeDropDown = function(e) {
+        if (dropDownMenu === null) return;
+        e.preventDefault();
+        document.getElementById('js-dropdown').style.display = 'none';
+        dropDownMenu = null;
     }
 
     //add eventListener to the modal "edit" button with 'js-modal' class
@@ -105,13 +113,19 @@ if (token != null) {
         return iconButton;
     }
 
-    //ne fonctionne pas car mauvaise selection pour le display = block, le faire
-    //sur le button avec class dropbtn
-    function addEventDropdownBtn() {
-        let dropdown = document.getElementById('js-dropdown');
+    function openDropdownBtn() {
+        let dropdown = document.querySelector('.input-field.dropbtn');
+        let dropContent = document.getElementById('js-dropdown');
         dropdown.addEventListener('click', function(event) {
-            dropdown.style.display = "block";
-            console.log("hello");
+            dropContent.style.display = "block";
+            dropDownMenu = event.target;
+            dropContent.style.boxShadow = "0px 14px 16px rgba(0, 0, 0, 0.09)";
+
+            document.querySelector('.js-modal-stop')
+            .addEventListener('click', closeDropDown);
+            
+            document.querySelector('.dropdown')
+            .addEventListener('click', stopPropagation);
         })
     }
 
@@ -136,4 +150,4 @@ if (token != null) {
     }); */
 }
 
-addEventDropdownBtn();
+openDropdownBtn();
