@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors')
 require('dotenv').config();
-console.log(process.env);
 const helmet = require('helmet');
 const swaggerUi = require('swagger-ui-express')
 const yaml = require('yamljs')
