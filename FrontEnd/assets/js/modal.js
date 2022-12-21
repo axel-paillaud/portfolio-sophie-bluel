@@ -1,7 +1,8 @@
 //manage modal window
 const modalWrapper = document.getElementsByClassName('modal-wrapper')[0];
 let modal = null;
-let dropDownMenu = null;
+let dropDownMenu = document.getElementById('js-dropdown'); //put this selector after DOM creation of add img, and create var to null like modal var
+dropDownMenu.style.display = "none";
 
 //load and execute only if we are logged in
 if (token != null) {
@@ -32,13 +33,6 @@ if (token != null) {
     //close modal only when click outside the .modal-wrapper
     const stopPropagation = function(e) {
         e.stopPropagation();
-    }
-
-    const closeDropDown = function(e) {
-        if (dropDownMenu === null) return;
-        e.preventDefault();
-        document.getElementById('js-dropdown').style.display = 'none';
-        dropDownMenu = null;
     }
 
     //add eventListener to the modal "edit" button with 'js-modal' class
@@ -114,18 +108,33 @@ if (token != null) {
     }
 
     function openDropdownBtn() {
-        let dropdown = document.querySelector('.input-field.dropbtn');
-        let dropContent = document.getElementById('js-dropdown');
-        dropdown.addEventListener('click', function(event) {
-            dropContent.style.display = "block";
-            dropDownMenu = event.target;
-            dropContent.style.boxShadow = "0px 14px 16px rgba(0, 0, 0, 0.09)";
+        let dropDownBtn = document.querySelector('.input-field.dropbtn');
+        dropDownBtn.addEventListener('click', function(event) {
+            dropDownMenu.style.display = "block";
+            dropDownMenu.style.boxShadow = "0px 14px 16px rgba(0, 0, 0, 0.09)";
 
             document.querySelector('.js-modal-stop')
             .addEventListener('click', closeDropDown);
             
             document.querySelector('.dropdown')
             .addEventListener('click', stopPropagation);
+        })
+    }
+
+    const closeDropDown = function(e) {
+        if (dropDownMenu.style.display === "none") return;
+        e.preventDefault();
+        dropDownMenu.style.display = 'none';
+
+        document.querySelector('js-modal-stop')
+        .removeEventListener('click', closeDropDown);
+    }
+
+    //add categories from server to the dropdown menu in modal window "add img"
+    function dropDownCategories(dropDownMenu) {
+        let categories = getCategories();
+        categories.then(function(value) {
+            console.log(value);
         })
     }
 
@@ -151,3 +160,4 @@ if (token != null) {
 }
 
 openDropdownBtn();
+dropDownCategories(dropDownMenu);
