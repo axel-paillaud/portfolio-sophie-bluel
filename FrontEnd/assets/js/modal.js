@@ -8,7 +8,7 @@ if (token != null) {
     const openModal = function (e) {
         e.preventDefault();
         document.getElementById('edit-modal').dataset.show = "true"; //for animation play
-        const target = document.querySelector(e.target.getAttribute('href'));
+        const target = document.getElementById("edit-modal");
         target.style.display = null; //remove the display : none
         modal = target;
         modal.addEventListener('click', closeModal);
