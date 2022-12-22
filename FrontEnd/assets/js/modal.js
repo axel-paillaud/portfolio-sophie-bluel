@@ -126,7 +126,7 @@ if (token != null) {
         e.preventDefault();
         dropDownMenu.style.display = 'none';
 
-        document.querySelector('js-modal-stop')
+        document.querySelector('.js-modal-stop')
         .removeEventListener('click', closeDropDown);
     }
 
@@ -134,8 +134,22 @@ if (token != null) {
     function dropDownCategories(dropDownMenu) {
         let categories = getCategories();
         categories.then(function(value) {
-            console.log(value);
+            value.forEach(category => {
+                console.log(category);
+                let listElement = document.createElement('li');
+                dropDownMenu.appendChild(listElement);
+                listElement.dataset.id = category.id;
+                listElement.innerHTML = category.name;
+            });
+            setCategory();
         })
+    }
+
+    //listen for click on categories from dropdown menu, and set it has a choice
+    function setCategory() {
+        dropDownMenu.addEventListener('click', function(event) {
+            console.log(event.target.textContent);
+        });
     }
 
    /*  addGalleryContent(); */
