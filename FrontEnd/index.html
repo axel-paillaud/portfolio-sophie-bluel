@@ -27,32 +27,6 @@
 	<main>
 		<div id="edit-modal" class="modal" data-show="false" style="display: none;">
 			<article class="modal-wrapper js-modal-stop">
-			<button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-			<button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
-				<h2>Ajout photo</h2>
-				<form id="add-work-form" class="form-full" method="post" enctype="multipart/form-data">
-					<div id="add-img">
-						<img src="assets/icons/picture-svgrepo.svg" alt="Ajouter une image">
-						<label for="image-file" class="btn-light">
-							<input type="file" id="image-file" name="image-file" class="none" accept="image/png, image/jpeg" required>
-							+ Ajouter une photo
-						</label>
-						<small>jpg, png : 4mo max</small>
-					</div>
-					<label for="title">Titre</label>
-					<input id="title" class="input-field" name="title" type="text" required>
-					<label for="category">Catégorie</label>
-					<div class="dropdown">
-						<button class="input-field dropbtn" data-id="1" type="button" id="category" name="category" required>
-							Object
-							<i class="fa-solid fa-chevron-down"></i>
-						</button>
-						<ul id="js-dropdown" class="dropdown-content" style="display: none;">
-						</ul>
-					</div>
-					<hr>
-					<button type="submit" name="submit-btn" id="submit-work" class="btn-primary">Valider</button>
-				</form>
 			</article>
 		</div>
 		<section id="introduction">
