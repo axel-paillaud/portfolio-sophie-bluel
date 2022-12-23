@@ -148,7 +148,10 @@ if (token != null) {
     //listen for click on categories from dropdown menu, and set it has a choice
     function setCategory() {
         dropDownMenu.addEventListener('click', function(event) {
-            console.log(event.target.textContent);
+            let dropbtn = document.querySelector('.input-field.dropbtn');
+            let icon = "<i class='fa-solid fa-chevron-down'></i>"
+            dropbtn.innerHTML = event.target.textContent + icon;
+            dropbtn.dataset.id = event.target.dataset.id;
         });
     }
 

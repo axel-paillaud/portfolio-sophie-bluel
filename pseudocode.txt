@@ -16,11 +16,6 @@ les travaux en conséquences.
 
     -Si non, afficher une erreur dans la console.
 
-TODO ERREUR
-Si on clique sur l'icône modifier plutôt que sur le mot, on a une erreur et la
-modale ne s'ouvre pas.
-
-
 https://www.npmjs.com/package/dotenv
 https://www.wawasensei.dev/tuto/tuto-authentification-refresh-json-web-token-en-nodejs-avec-express
 https://fr.javascript.info/fetch#requetes-post
@@ -40,6 +35,10 @@ Si on clique sur un des éléments du menu :
     - Ajouter un data-id de la catégories correspondante, pour pouvoir
     la récupérer dans le submit par la suite
 
+Prochaine modale ajouté, plutôt que de tout ajouter avec des manipulations du DOM,
+essayer d'ajouter du texte HTML dans une variable avec des `` pour pouvoir revenir
+à la ligne, puis d'insérer ce texte avec innerHTML.
+
 TODO
-Enlever les eventListeners sur le dropdown button à l'ouverture/fermeture
-de l'élément.
+Si on choisi un élément du dropdown menu, il faudrait qu'il se ferme (ici il
+ reste ouvert)
