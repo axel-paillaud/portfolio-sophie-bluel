@@ -43,4 +43,6 @@ TODO
 Griser le bouton "Valider" de l'ajout de travaux si tout les éléments ne sont pas
 rempli.
 
-Fermer le dropdown menu également quand on ferme la fenêtre modale
+Fermer le dropdown menu également quand on ferme la fenêtre modale ->
+    Non, car si on ferme la modale on revient sur la page d'édition des travaux
+    , donc reset complet de la modale "ajout de travaux"

@@ -228,6 +228,10 @@ body {
 	background-color: #FFFEF8;
 }
 
+.none {
+	display: none;
+}
+
 .base-link {
 	text-decoration: none;
 	color: black;
@@ -559,7 +563,7 @@ nav a:hover {
 }
 
 /* add work modal style */
-.add-img {
+#add-img {
 	background-color: #E8F1F6;
 	display: flex;
 	justify-content: center;
@@ -569,6 +573,11 @@ nav a:hover {
 	height: 40%;
 	margin-bottom: 30px;
 	border-radius: 3px;
+}
+
+.img-thumbnails {
+	width: 40%;
+	max-height: 100%;
 }
 
 /*dropdown button */

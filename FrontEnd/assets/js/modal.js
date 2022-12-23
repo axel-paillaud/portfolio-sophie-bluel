@@ -155,6 +155,36 @@ if (token != null) {
         });
     }
 
+    //get image the user just add
+    function getUserImage() {
+        let imageInput = document.getElementById('image-file');
+        imageInput.addEventListener('change', function(value) {
+            let userInput = imageInput.files[0];
+            if (userInput.type === "image/png" || userInput.type === "image/jpeg")
+            {
+                let imgElt = document.createElement('img');
+                updateImg(imgElt, userInput);
+            }
+        });
+    }
+
+    //update thumbnails img
+    function updateImg(imgElt, userInput) {
+        imgElt.classList.add('img-thumbnails');
+        imgElt.file = userInput;
+        let addImgContener = document.getElementById('add-img');
+        
+        for (let child of addImgContener.children) {
+            child.style.display = 'none';
+        }
+
+        addImgContener.appendChild(imgElt);
+
+        const reader = new FileReader();
+        reader.onload = (e) => {imgElt.src = e.target.result;};
+        reader.readAsDataURL(userInput);
+    }
+
    /*  addGalleryContent(); */
     const btnAddImg = document.getElementById('add-img-btn');
     const btnCloseModal = document.getElementById('close-modal');
@@ -178,3 +208,4 @@ if (token != null) {
 
 openDropdownBtn();
 dropDownCategories(dropDownMenu);
+getUserImage();
