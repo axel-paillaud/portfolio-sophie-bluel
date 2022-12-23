@@ -21,8 +21,6 @@ https://www.wawasensei.dev/tuto/tuto-authentification-refresh-json-web-token-en-
 https://fr.javascript.info/fetch#requetes-post
 https://stackoverflow.com/questions/57839879/how-to-handle-jsonwebtoken-from-front-end 
 
-"Browser LocalStorage ?"
-
 DROPDOWN MENU
 Quand on clique sur le boutons "catégories", faire :
     - Apparaitre le menu (display: block)
@@ -46,3 +44,4 @@ rempli.
 Fermer le dropdown menu également quand on ferme la fenêtre modale ->
     Non, car si on ferme la modale on revient sur la page d'édition des travaux
     , donc reset complet de la modale "ajout de travaux"
+

@@ -24,85 +24,85 @@
 			</ul>
 		</nav>
 	</header>
-<main>
-	<div id="edit-modal" class="modal" data-show="false" style="display: none;">
-		<article class="modal-wrapper js-modal-stop">
-		<button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-		<button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
-			<h2>Ajout photo</h2>
-			<form class="form-full" method="post" enctype="multipart/form-data">
-				<div id="add-img">
-					<img src="assets/icons/picture-svgrepo.svg" alt="Ajouter une image">
-					<label for="image-file" class="btn-light">
-						<input type="file" id="image-file" name="image-file" class="none" accept="image/png, image/jpeg" required>
-						+ Ajouter une photo
-					</label>
-					<small>jpg, png : 4mo max</small>
-				</div>
-				<label for="title">Titre</label>
-				<input id="title" class="input-field" name="title" type="text" required>
-				<label for="category">Catégorie</label>
-				<div class="dropdown">
-					<button class="input-field dropbtn" data-id="1" type="button" id="category" required>
-						 Object
-						<i class="fa-solid fa-chevron-down"></i>
-					</button>
-					<ul id="js-dropdown" class="dropdown-content" style="display: none;">
-					</ul>
-				</div>
-				<hr>
-				<button type="submit" class="btn-primary">Valider</button>
-			</form>
-		</article>
-	</div>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
-			<figcaption class="js-edit base-link"></figcaption>
-		</figure>
-		<article>
-			<a class="js-edit base-link"></a>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>
-				Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes,
-				les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. 
-				Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.
-			</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<section class="my-project">
-			<h2>Mes Projets</h2>
-			<a class="js-edit js-modal base-link" href="#edit-modal"></a>
+	<main>
+		<div id="edit-modal" class="modal" data-show="false" style="display: none;">
+			<article class="modal-wrapper js-modal-stop">
+			<button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+			<button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+				<h2>Ajout photo</h2>
+				<form id="add-work-form" class="form-full" method="post" enctype="multipart/form-data">
+					<div id="add-img">
+						<img src="assets/icons/picture-svgrepo.svg" alt="Ajouter une image">
+						<label for="image-file" class="btn-light">
+							<input type="file" id="image-file" name="image-file" class="none" accept="image/png, image/jpeg" required>
+							+ Ajouter une photo
+						</label>
+						<small>jpg, png : 4mo max</small>
+					</div>
+					<label for="title">Titre</label>
+					<input id="title" class="input-field" name="title" type="text" required>
+					<label for="category">Catégorie</label>
+					<div class="dropdown">
+						<button class="input-field dropbtn" data-id="1" type="button" id="category" name="category" required>
+							Object
+							<i class="fa-solid fa-chevron-down"></i>
+						</button>
+						<ul id="js-dropdown" class="dropdown-content" style="display: none;">
+						</ul>
+					</div>
+					<hr>
+					<button type="submit" name="submit-btn" id="submit-work" class="btn-primary">Valider</button>
+				</form>
+			</article>
+		</div>
+		<section id="introduction">
+			<figure>
+				<img src="./assets/images/sophie-bluel.png" alt="Sophie Bluel">
+				<figcaption class="js-edit base-link"></figcaption>
+			</figure>
+			<article>
+				<a class="js-edit base-link"></a>
+				<h2>Designer d'espace</h2>
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+				<p>
+					Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes,
+					les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. 
+					Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.
+				</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			</article>
 		</section>
-		<div class="filters">
-		</div>
-		<div class="gallery">
-		</div>
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
+		<section id="portfolio">
+			<section class="my-project">
+				<h2>Mes Projets</h2>
+				<a class="js-edit js-modal base-link" href="#edit-modal"></a>
+			</section>
+			<div class="filters">
+			</div>
+			<div class="gallery">
+			</div>
+		</section>
+		<section id="contact">
+			<h2>Contact</h2>
+			<p>Vous avez un projet ? Discutons-en !</p>
+			<form action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+				<label for="message">Message</label>
+				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<input type="submit" value="Envoyer">
+			</form>
+		</section>
+	</main>
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
 <script src="./assets/js/script.js"></script>
 <script src="./assets/js/admin.js"></script>
 <script src="./assets/js/modal.js"></script>

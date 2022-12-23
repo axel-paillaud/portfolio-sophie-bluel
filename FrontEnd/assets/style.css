@@ -338,10 +338,6 @@ nav a:hover {
 	margin: 65px 0 40px 0;
 }
 
-.form-primary label {
-	margin-bottom: 8px;
-}
-
 .login-container a {
 	color: black;
 }
@@ -349,6 +345,7 @@ nav a:hover {
 .input-field {
 	font-family: 'Work Sans';
 	margin-bottom: 32px;
+	margin-top: 8px;
 	min-height: 48px;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	border: none;

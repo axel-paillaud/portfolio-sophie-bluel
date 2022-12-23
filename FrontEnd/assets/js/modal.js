@@ -3,6 +3,7 @@ const modalWrapper = document.getElementsByClassName('modal-wrapper')[0];
 let modal = null;
 let dropDownMenu = document.getElementById('js-dropdown'); //put this selector after DOM creation of add img, and create var to null like modal var
 dropDownMenu.style.display = "none";
+let userImage = false;
 
 //load and execute only if we are logged in
 if (token != null) {
@@ -24,6 +25,7 @@ if (token != null) {
         window.setTimeout(function() { //to delay and let time for animation close
             modal.style.display = 'none';
             modal = null;
+            userImage = false;
         }, 500);
         modal.removeEventListener('click', closeModal);
         btnCloseModal.removeEventListener('click', closeModal);
@@ -164,6 +166,7 @@ if (token != null) {
             {
                 let imgElt = document.createElement('img');
                 updateImg(imgElt, userInput);
+                userImage = true;
             }
         });
     }
@@ -183,6 +186,47 @@ if (token != null) {
         const reader = new FileReader();
         reader.onload = (e) => {imgElt.src = e.target.result;};
         reader.readAsDataURL(userInput);
+    }
+
+    function sendWork() {
+        let addWorkForm = document.getElementById('add-work-form').elements;
+        addWorkForm["submit-btn"].addEventListener('click', function(event) {
+            event.preventDefault();
+
+            if ( addWorkForm["title"].value === "" || addWorkForm["category"].dataset.id === "" || !userImage) {
+                console.log("Error in input field(add message error in DOM)");
+            }
+            else {
+                let formData = new FormData();
+
+                let userInput = addWorkForm["image-file"].files[0];
+
+                formData.append("title", addWorkForm["title"].value);
+                formData.append("category", addWorkForm["category"].dataset.id);
+                formData.append("image", userInput);
+
+                fetch(worksURI, {
+                    method: "POST",
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                    },
+                    body: formData,
+                })
+                .then(function(res) {
+                    if (res.ok) {
+                        return;
+                    }
+                    else {
+                        console.log("Une erreur sur l'envoi d'un ouvrage est survenue.");
+                        console.log(res);
+                    }
+                })
+                .catch(function(err) {
+                    console.log("Une erreur sur l'envoi d'un ouvrage est survenue. Erreur : ");
+                    console.log(err);
+                })
+            }
+        })
     }
 
    /*  addGalleryContent(); */
@@ -209,3 +253,4 @@ if (token != null) {
 openDropdownBtn();
 dropDownCategories(dropDownMenu);
 getUserImage();
+sendWork();
