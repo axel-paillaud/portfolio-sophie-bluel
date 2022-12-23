@@ -250,7 +250,7 @@ if (token != null) {
     }); */
 }
 
-openDropdownBtn();
+/* openDropdownBtn();
 dropDownCategories(dropDownMenu);
 getUserImage();
-sendWork();
+sendWork(); */
