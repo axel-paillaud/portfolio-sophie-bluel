@@ -45,3 +45,5 @@ Fermer le dropdown menu également quand on ferme la fenêtre modale ->
     Non, car si on ferme la modale on revient sur la page d'édition des travaux
     , donc reset complet de la modale "ajout de travaux"
 
+
+Supprimer un ouvrage met bien à jour la fenêtre modale, mais pas la page d'accueil
