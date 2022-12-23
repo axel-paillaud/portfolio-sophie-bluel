@@ -140,6 +140,7 @@ if (token != null) {
                 dropDownMenu.appendChild(listElement);
                 listElement.dataset.id = category.id;
                 listElement.innerHTML = category.name;
+                listElement.addEventListener('click', closeDropDown);
             });
             setCategory();
         })
