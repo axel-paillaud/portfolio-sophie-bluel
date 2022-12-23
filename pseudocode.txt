@@ -40,5 +40,7 @@ essayer d'ajouter du texte HTML dans une variable avec des `` pour pouvoir reven
 à la ligne, puis d'insérer ce texte avec innerHTML.
 
 TODO
-Si on choisi un élément du dropdown menu, il faudrait qu'il se ferme (ici il
- reste ouvert)
+Griser le bouton "Valider" de l'ajout de travaux si tout les éléments ne sont pas
+rempli.
+
+Fermer le dropdown menu également quand on ferme la fenêtre modale

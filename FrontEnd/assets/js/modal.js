@@ -135,7 +135,6 @@ if (token != null) {
         let categories = getCategories();
         categories.then(function(value) {
             value.forEach(category => {
-                console.log(category);
                 let listElement = document.createElement('li');
                 dropDownMenu.appendChild(listElement);
                 listElement.dataset.id = category.id;
