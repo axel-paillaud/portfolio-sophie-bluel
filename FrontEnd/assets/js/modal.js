@@ -81,7 +81,7 @@ if (token != null) {
             <label for="category">Catégorie</label>
             <div class="dropdown">
                 <button class="input-field dropbtn" data-id="1" type="button" id="category" name="category" required>
-                    Object
+                    Objets
                     <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <ul id="js-dropdown" class="dropdown-content" style="display: none;">
@@ -101,13 +101,15 @@ if (token != null) {
         })
         .then(function() {
             resetDOM(galleryModal);
+            resetDOM(gallery);
             getWorks() //get new works array
             .then(function() { //then add this array to the DOM
-            works.forEach(work => {
-                let figure = addWork(work, galleryModal, "éditer");
-                let iconButton = addDeleteIcons(figure, work);
-        
-                iconButton.addEventListener('click',deleteWorkAndRefresh);        
+                addAllWorks(works, gallery);
+                works.forEach(work => {
+                    let figure = addWork(work, galleryModal, "éditer");
+                    let iconButton = addDeleteIcons(figure, work);
+            
+                    iconButton.addEventListener('click',deleteWorkAndRefresh);        
             });
             })
         })
@@ -287,7 +289,3 @@ if (token != null) {
     document.getElementById('add-img-btn').addEventListener('click', addWorkModal);
 }
 
-/* openDropdownBtn();
-dropDownCategories(dropDownMenu);
-getUserImage();
-sendWork(); */
