@@ -1,8 +1,6 @@
 //manage modal window
 const modalWrapper = document.getElementsByClassName('modal-wrapper')[0];
 let modal = null;
-let dropDownMenu = document.getElementById('js-dropdown'); //put this selector after DOM creation of add img, and create var to null like modal var
-dropDownMenu.style.display = "none";
 let userImage = false;
 
 //load and execute only if we are logged in
@@ -66,9 +64,35 @@ if (token != null) {
         deleteGallery.innerHTML = "Supprimer la galerie";
     }
 
+    var htmlAddWork = `    <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+    <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <h2>Ajout photo</h2>
+        <form id="add-work-form" class="form-full" method="post" enctype="multipart/form-data">
+            <div id="add-img">
+                <img src="assets/icons/picture-svgrepo.svg" alt="Ajouter une image">
+                <label for="image-file" class="btn-light">
+                    <input type="file" id="image-file" name="image-file" class="none" accept="image/png, image/jpeg" required>
+                    + Ajouter une photo
+                </label>
+                <small>jpg, png : 4mo max</small>
+            </div>
+            <label for="title">Titre</label>
+            <input id="title" class="input-field" name="title" type="text" required>
+            <label for="category">Catégorie</label>
+            <div class="dropdown">
+                <button class="input-field dropbtn" data-id="1" type="button" id="category" name="category" required>
+                    Object
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <ul id="js-dropdown" class="dropdown-content" style="display: none;">
+                </ul>
+            </div>
+            <hr>
+            <button type="submit" name="submit-btn" id="submit-work" class="btn-primary">Valider</button>
+        </form>`
+
     const deleteWorkAndRefresh = async function(e)  {
         let id = e.target.dataset.id;
-        console.log(id);
         await fetch(worksURI + "/" + id, {
             method: "DELETE",
             headers: {
@@ -77,7 +101,6 @@ if (token != null) {
         })
         .then(function() {
             resetDOM(galleryModal);
-            console.log(works);
             getWorks() //get new works array
             .then(function() { //then add this array to the DOM
             works.forEach(work => {
@@ -109,7 +132,7 @@ if (token != null) {
         return iconButton;
     }
 
-    function openDropdownBtn() {
+    function openDropdownBtn(dropDownMenu) {
         let dropDownBtn = document.querySelector('.input-field.dropbtn');
         dropDownBtn.addEventListener('click', function(event) {
             dropDownMenu.style.display = "block";
@@ -124,6 +147,7 @@ if (token != null) {
     }
 
     const closeDropDown = function(e) {
+        let dropDownMenu = document.getElementById('js-dropdown');
         if (dropDownMenu.style.display === "none") return;
         e.preventDefault();
         dropDownMenu.style.display = 'none';
@@ -143,12 +167,12 @@ if (token != null) {
                 listElement.innerHTML = category.name;
                 listElement.addEventListener('click', closeDropDown);
             });
-            setCategory();
+            setCategory(dropDownMenu);
         })
     }
 
     //listen for click on categories from dropdown menu, and set it has a choice
-    function setCategory() {
+    function setCategory(dropDownMenu) {
         dropDownMenu.addEventListener('click', function(event) {
             let dropbtn = document.querySelector('.input-field.dropbtn');
             let icon = "<i class='fa-solid fa-chevron-down'></i>"
@@ -214,6 +238,7 @@ if (token != null) {
                 })
                 .then(function(res) {
                     if (res.ok) {
+                        location.href = "index.html";
                         return;
                     }
                     else {
@@ -229,14 +254,24 @@ if (token != null) {
         })
     }
 
-   /*  addGalleryContent(); */
+    const addWorkModal = function(e) {
+        resetDOM(modalWrapper);
+        modalWrapper.innerHTML = htmlAddWork;
+        let dropDownMenu = document.getElementById('js-dropdown');
+        dropDownMenu.style.display = "none";
+        openDropdownBtn(dropDownMenu);
+        dropDownCategories(dropDownMenu);
+        getUserImage();
+        sendWork();
+    }
+
+    addGalleryContent();
     const btnAddImg = document.getElementById('add-img-btn');
     const btnCloseModal = document.getElementById('close-modal');
     const galleryModal = document.getElementsByClassName('gallery-modal')[0];
     eventModal();
-    
-    //uncomment when add work feature is finish
-/*     promiseWorks.then(function(works) {
+
+    promiseWorks.then(function(works) {
         works.forEach(work => {
             let figure = addWork(work, galleryModal, "éditer");
             let iconButton = addDeleteIcons(figure, work);
@@ -247,7 +282,9 @@ if (token != null) {
     .catch(function(err) {
         console.log("L'erreur suivante sur l'ajout des travaux dans la fenêtre modale est survenue :");
         console.log(err);
-    }); */
+    });
+
+    document.getElementById('add-img-btn').addEventListener('click', addWorkModal);
 }
 
 /* openDropdownBtn();
