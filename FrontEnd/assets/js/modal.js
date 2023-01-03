@@ -256,6 +256,20 @@ if (token != null) {
         })
     }
 
+    //button "back" to go back into gallery modal, instead of add work modal
+    const getBackModal = function(e) {
+        resetDOM(modalWrapper);
+        addGalleryContent();
+        const galleryModal = document.getElementsByClassName('gallery-modal')[0];
+        works.forEach(work => {
+            let figure = addWork(work, galleryModal, "éditer");
+            let iconButton = addDeleteIcons(figure, work);
+    
+            iconButton.addEventListener('click',deleteWorkAndRefresh);
+        });
+    }
+
+    //all element to create modal window "add work"
     const addWorkModal = function(e) {
         resetDOM(modalWrapper);
         modalWrapper.innerHTML = htmlAddWork;
@@ -265,6 +279,8 @@ if (token != null) {
         dropDownCategories(dropDownMenu);
         getUserImage();
         sendWork();
+        document.getElementById('close-modal').addEventListener('click', closeModal);
+        document.getElementById('back-btn').addEventListener('click', getBackModal);
     }
 
     addGalleryContent();
@@ -286,6 +302,5 @@ if (token != null) {
         console.log(err);
     });
 
-    document.getElementById('add-img-btn').addEventListener('click', addWorkModal);
+    btnAddImg.addEventListener('click', addWorkModal);
 }
-
