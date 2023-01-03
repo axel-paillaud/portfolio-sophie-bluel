@@ -12,7 +12,7 @@ if (token != null) {
         target.style.display = null; //remove the display : none
         modal = target;
         modal.addEventListener('click', closeModal);
-        btnCloseModal.addEventListener('click', closeModal);
+        document.getElementById('close-modal').addEventListener('click', closeModal);
         document.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
     }
     
@@ -26,7 +26,7 @@ if (token != null) {
             userImage = false;
         }, 500);
         modal.removeEventListener('click', closeModal);
-        btnCloseModal.removeEventListener('click', closeModal);
+        document.getElementById('close-modal').removeEventListener('click', closeModal);
         document.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
     }
     
@@ -64,7 +64,6 @@ if (token != null) {
         deleteGallery.innerHTML = "Supprimer la galerie";
 
         const btnAddImg = document.getElementById('add-img-btn');
-        const btnCloseModal = document.getElementById('close-modal');
         const galleryModal = document.getElementsByClassName('gallery-modal')[0];
         eventModal();
 
