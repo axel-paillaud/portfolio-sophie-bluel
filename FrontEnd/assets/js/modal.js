@@ -62,6 +62,26 @@ if (token != null) {
         modalWrapper.appendChild(deleteGallery).classList.add("delete-link");
         deleteGallery.setAttribute('href', "#");
         deleteGallery.innerHTML = "Supprimer la galerie";
+
+        const btnAddImg = document.getElementById('add-img-btn');
+        const btnCloseModal = document.getElementById('close-modal');
+        const galleryModal = document.getElementsByClassName('gallery-modal')[0];
+        eventModal();
+
+        promiseWorks.then(function(works) {
+            works.forEach(work => {
+                let figure = addWork(work, galleryModal, "éditer");
+                let iconButton = addDeleteIcons(figure, work);
+        
+                iconButton.addEventListener('click',deleteWorkAndRefresh);
+            });
+        })
+        .catch(function(err) {
+            console.log("L'erreur suivante sur l'ajout des travaux dans la fenêtre modale est survenue :");
+            console.log(err);
+        });
+    
+        btnAddImg.addEventListener('click', addWorkModal);
     }
 
     var htmlAddWork = `    <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
@@ -284,23 +304,4 @@ if (token != null) {
     }
 
     addGalleryContent();
-    const btnAddImg = document.getElementById('add-img-btn');
-    const btnCloseModal = document.getElementById('close-modal');
-    const galleryModal = document.getElementsByClassName('gallery-modal')[0];
-    eventModal();
-
-    promiseWorks.then(function(works) {
-        works.forEach(work => {
-            let figure = addWork(work, galleryModal, "éditer");
-            let iconButton = addDeleteIcons(figure, work);
-    
-            iconButton.addEventListener('click',deleteWorkAndRefresh);
-        });
-    })
-    .catch(function(err) {
-        console.log("L'erreur suivante sur l'ajout des travaux dans la fenêtre modale est survenue :");
-        console.log(err);
-    });
-
-    btnAddImg.addEventListener('click', addWorkModal);
 }
