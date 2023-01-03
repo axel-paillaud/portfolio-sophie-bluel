@@ -119,6 +119,7 @@ if (token != null) {
             }
         })
         .then(function() {
+            const galleryModal = document.getElementsByClassName('gallery-modal')[0];
             resetDOM(galleryModal);
             resetDOM(gallery);
             getWorks() //get new works array
@@ -279,13 +280,6 @@ if (token != null) {
     const getBackModal = function(e) {
         resetDOM(modalWrapper);
         addGalleryContent();
-        const galleryModal = document.getElementsByClassName('gallery-modal')[0];
-        works.forEach(work => {
-            let figure = addWork(work, galleryModal, "éditer");
-            let iconButton = addDeleteIcons(figure, work);
-    
-            iconButton.addEventListener('click',deleteWorkAndRefresh);
-        });
     }
 
     //all element to create modal window "add work"
