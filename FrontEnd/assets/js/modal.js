@@ -68,7 +68,8 @@ if (token != null) {
         const galleryModal = document.getElementsByClassName('gallery-modal')[0];
         eventModal();
 
-        promiseWorks.then(function(works) {
+        getWorks()
+        .then(function() {
             works.forEach(work => {
                 let figure = addWork(work, galleryModal, "éditer");
                 let iconButton = addDeleteIcons(figure, work);
