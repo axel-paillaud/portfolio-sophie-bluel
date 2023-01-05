@@ -24,6 +24,7 @@ if (token != null) {
             modal.style.display = 'none';
             modal = null;
             userImage = false;
+            getBackModal();
         }, 500);
         modal.removeEventListener('click', closeModal);
         document.getElementById('close-modal').removeEventListener('click', closeModal);
@@ -277,9 +278,10 @@ if (token != null) {
     }
 
     //button "back" to go back into gallery modal, instead of add work modal
-    const getBackModal = function(e) {
+    const getBackModal = function() {
         resetDOM(modalWrapper);
         addGalleryContent();
+        document.getElementById('close-modal').addEventListener('click', closeModal);
     }
 
     //all element to create modal window "add work"
