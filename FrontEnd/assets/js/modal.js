@@ -272,20 +272,20 @@ if (token != null) {
                 })
                 .then(function(res) {
                     if (res.ok) {
-                        resetDOM(gallery);
-                        getWorks()
-                        .then(function() {
-                            addAllWorks(works, gallery);
-                            return works;
-                        })
-                        .then(function() {
-                            document.getElementById('back-btn').click();
-                        })
+                        return res.json();
                     }
                     else {
                         console.log("Une erreur sur l'envoi d'un ouvrage est survenue.");
                         console.log(res);
                     }
+                })
+                .then(function(newWork) {
+                    works.push(newWork);
+                    resetDOM(gallery);
+                    addAllWorks(works, gallery);
+                })
+                .then(function() {
+                    document.getElementById('back-btn').click();
                 })
                 .catch(function(err) {
                     console.log("Une erreur sur l'envoi d'un ouvrage est survenue. Erreur : ");

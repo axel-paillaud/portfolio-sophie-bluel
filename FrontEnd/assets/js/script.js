@@ -109,20 +109,14 @@ function filtersCategories(works, categoryId, element) {
     resetDOM(gallery);
 
     if (categoryId == 0) {
-        promiseWorks
-        .then(function() {
-            addAllWorks(works, element);
-        })
+        addAllWorks(works, element);
     }
     else {
-        promiseWorks
-        .then(function() {
-                    works.forEach(work => {
-            if (work["category"].id == categoryId) {
-                addWork(work, element, work.title);
-            }
+        works.forEach(work => {
+        if (work["categoryId"] == categoryId) {
+            addWork(work, element, work.title);
+        }
         });
-        })
     }
 }
 
