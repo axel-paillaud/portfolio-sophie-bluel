@@ -68,7 +68,7 @@ if (token != null) {
         const galleryModal = document.getElementsByClassName('gallery-modal')[0];
         eventModal();
 
-        getWorks()
+        promiseWorks
         .then(function() {
             works.forEach(work => {
                 let figure = addWork(work, galleryModal, "éditer");
