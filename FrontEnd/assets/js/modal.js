@@ -73,7 +73,7 @@ if (token != null) {
                 </ul>
             </div>
             <hr>
-            <button type="submit" name="submit-btn" id="submit-work" class="btn-primary">Valider</button>
+            <button type="submit" name="submit-btn" id="submit-work" class="btn-primary btn-disable" disabled>Valider</button>
         </form>`
 
     //add close modal button and title
@@ -234,13 +234,23 @@ if (token != null) {
         reader.readAsDataURL(userInput);
     }
 
+    function errorMessage() {
+        let errorMsg = document.createElement('p');
+        errorMsg.classList.add("error-msg", "error-msg-float");
+        errorMsg.innerHTML = "Erreur avec le fichier ou le titre";
+        modalWrapper.appendChild(errorMsg);
+        setTimeout(function() {
+            modalWrapper.removeChild(errorMsg);
+        }, 2500);
+    }
+
     function sendWork() {
         let addWorkForm = document.getElementById('add-work-form').elements;
         addWorkForm["submit-btn"].addEventListener('click', function(event) {
             event.preventDefault();
 
             if ( addWorkForm["title"].value === "" || addWorkForm["category"].dataset.id === "" || !userImage) {
-                console.log("Error in input field(add message error in DOM)");
+                errorMessage();
             }
             else {
                 addWorkForm["submit-btn"].setAttribute('disabled', "");
@@ -277,6 +287,16 @@ if (token != null) {
         })
     }
 
+    function checkValidForm() {
+        let form = document.getElementById('add-work-form');
+        form.addEventListener('input', function() {
+            if ((form["title"].value !== "") && (form["image-file"].value !== "")) {
+                form["submit-btn"].disabled = false;
+                form["submit-btn"].classList.remove("btn-disable");
+            }
+        })
+    }
+
     //button "back" to go back into gallery modal, instead of add work modal
     const getBackModal = function() {
         resetDOM(modalWrapper);
@@ -295,6 +315,7 @@ if (token != null) {
         dropDownCategories(dropDownMenu);
         getUserImage();
         sendWork();
+        checkValidForm();
         document.getElementById('close-modal').addEventListener('click', closeModal);
         document.getElementById('back-btn').addEventListener('click', getBackModal);
     }

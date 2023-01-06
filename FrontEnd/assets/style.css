@@ -109,6 +109,14 @@ button {
 	background-color: #0E2F28;
 }
 
+.btn-disable {
+	background-color: grey;
+}
+
+.btn-disable:hover {
+	background-color: grey;
+}
+
 .btn-light {
 	font-family: 'Work Sans';
 	font-size: 14px;
@@ -378,6 +386,36 @@ nav a:hover {
 	align-items: center;
 	justify-content: center;
 	min-width: 380px;
+}
+
+.error-msg-float {
+	position: absolute;
+	margin: 0;
+	background-color: #d07b7b;
+	border-radius: 3px;
+	min-width: 0;
+	width: 68%;
+	animation: fadeUp 2.5s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeUp {
+	0% {
+		background-color: #d07b7b00;
+		rgba(0, 0, 0, 0);
+	}
+	10% {
+		background-color: #d07b7b;
+		color: black;
+	}
+	75% {
+		background-color: #d07b7b;
+		color: black;
+	}
+	100% {
+		background-color: #d07b7b00;
+		color: rgba(0, 0, 0, 0);
+	}
 }
 
 /*edition mode */
