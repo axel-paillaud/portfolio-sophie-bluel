@@ -102,6 +102,11 @@ button {
 	font-size: 1.2em;
 	border: none;
 	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+	background-color: #0E2F28;
 }
 
 .btn-light {
