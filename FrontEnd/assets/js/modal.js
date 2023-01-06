@@ -42,17 +42,16 @@ if (token != null) {
     }
 
     var htmlGalleryModal = `
-                            <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-                            <h2>Galerie photo</h2>
+                            <h2 id="title-modal"></h2>
                             <div class="gallery-modal"></div>
                             <hr>
                             <button id="add-img-btn" class="btn-primary">Ajouter une photo</button>
                             <a class="delete-link" href="#">Supprimer la gallerie</a>
                             `
 
-    var htmlAddWork = `    <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-    <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
-        <h2>Ajout photo</h2>
+    var htmlAddWork = `
+        <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <h2 id="title-modal"></h2>
         <form id="add-work-form" class="form-full" method="post" enctype="multipart/form-data">
             <div id="add-img">
                 <img src="assets/icons/picture-svgrepo.svg" alt="Ajouter une image">
@@ -77,17 +76,24 @@ if (token != null) {
             <button type="submit" name="submit-btn" id="submit-work" class="btn-primary">Valider</button>
         </form>`
 
-    //add title, div and button to edit gallery inside the modal window
-    function addGalleryContent() {
-/*         let closeButton = document.createElement('button');
+    //add close modal button and title
+    function addTemplateModal(title) {
+        let closeButton = document.createElement('button');
         let iconClose = document.createElement('i');
-        let title = document.createElement('h2');
+        let titleModal = document.getElementById('title-modal');
 
-        modalWrapper.appendChild(closeButton).id = "close-modal";
+        modalWrapper.insertBefore(closeButton, titleModal).id = "close-modal";
         closeButton.appendChild(iconClose).classList.add("fa-solid", "fa-xmark");
+        titleModal.innerHTML = title;
+    }
 
-        modalWrapper.appendChild(title).innerHTML = "Galerie photo"; */
+    //add modal gallery content
+    function addGalleryContent() {
+       /*  let title = document.createElement('h2'); */
+
+        /* modalWrapper.appendChild(title).innerHTML = "Galerie photo"; */
         modalWrapper.innerHTML = htmlGalleryModal;
+        addTemplateModal("Galerie photo");
 
         const btnAddImg = document.getElementById('add-img-btn');
         const galleryModal = document.getElementsByClassName('gallery-modal')[0];
@@ -288,6 +294,7 @@ if (token != null) {
     const addWorkModal = function(e) {
         resetDOM(modalWrapper);
         modalWrapper.innerHTML = htmlAddWork;
+        addTemplateModal("Ajout photo");
         let dropDownMenu = document.getElementById('js-dropdown');
         dropDownMenu.style.display = "none";
         openDropdownBtn(dropDownMenu);
