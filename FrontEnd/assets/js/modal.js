@@ -125,19 +125,13 @@ if (token != null) {
             }
         })
         .then(function() {
-            const galleryModal = document.getElementsByClassName('gallery-modal')[0];
-            resetDOM(galleryModal);
-            resetDOM(gallery);
-            getWorks() //get new works array
-            .then(function() { //then add this array to the DOM
-                addAllWorks(works, gallery);
-                works.forEach(work => {
-                    let figure = addWork(work, galleryModal, "éditer");
-                    let iconButton = addDeleteIcons(figure, work);
-            
-                    iconButton.addEventListener('click',deleteWorkAndRefresh);        
-                });
-            })
+            id = parseInt(id);
+            for (let i = 0; i < works.length; i++) { //update works array
+                if (works[i].id === id) {
+                    works.splice(i, i);
+                }
+            };
+            e.target.parentNode.style.display = "none"; //clear the element from DOM
         })
         .catch(function(err) {
             console.log("Une erreur sur la suppression d'un travail est survenue");
