@@ -276,6 +276,7 @@ if (token != null) {
                         getWorks()
                         .then(function() {
                             addAllWorks(works, gallery);
+                            return works;
                         })
                         .then(function() {
                             document.getElementById('back-btn').click();

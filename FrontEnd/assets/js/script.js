@@ -91,7 +91,7 @@ function addCategories(categories) {
 }
 
 //Add event listeners on click for all categories, and filters on click
-function addEventToCategories(works, element, title) {
+function addEventToCategories(works, element) {
     document.querySelectorAll(".filters button")
     .forEach(filter => {
         filter.addEventListener('click', function(value) {
@@ -109,14 +109,20 @@ function filtersCategories(works, categoryId, element) {
     resetDOM(gallery);
 
     if (categoryId == 0) {
-        addAllWorks(works, element);
+        promiseWorks
+        .then(function() {
+            addAllWorks(works, element);
+        })
     }
     else {
-        works.forEach(work => {
+        promiseWorks
+        .then(function() {
+                    works.forEach(work => {
             if (work["category"].id == categoryId) {
                 addWork(work, element, work.title);
             }
         });
+        })
     }
 }
 
