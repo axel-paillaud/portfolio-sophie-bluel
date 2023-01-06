@@ -132,7 +132,7 @@ if (token != null) {
                     let iconButton = addDeleteIcons(figure, work);
             
                     iconButton.addEventListener('click',deleteWorkAndRefresh);        
-            });
+                });
             })
         })
         .catch(function(err) {
@@ -245,6 +245,7 @@ if (token != null) {
                 console.log("Error in input field(add message error in DOM)");
             }
             else {
+                addWorkForm["submit-btn"].setAttribute('disabled', "");
                 let formData = new FormData();
 
                 let userInput = addWorkForm["image-file"].files[0];

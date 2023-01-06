@@ -11,7 +11,7 @@ function resetDOM(element) {
     element.replaceChildren();
 }
 
-//get all the works from server
+//get all works from server
 async function getWorks() {
     await fetch(worksURI)
     .then(function(res) {
