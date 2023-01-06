@@ -103,6 +103,7 @@ button {
 	border: none;
 	cursor: pointer;
 	transition: background-color 0.3s;
+	white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -399,25 +400,6 @@ nav a:hover {
 	animation-fill-mode: forwards;
 }
 
-@keyframes fadeUp {
-	0% {
-		background-color: #d07b7b00;
-		rgba(0, 0, 0, 0);
-	}
-	10% {
-		background-color: #d07b7b;
-		color: black;
-	}
-	75% {
-		background-color: #d07b7b;
-		color: black;
-	}
-	100% {
-		background-color: #d07b7b00;
-		color: rgba(0, 0, 0, 0);
-	}
-}
-
 /*edition mode */
 .header-edition {
 	display: flex;
@@ -602,6 +584,25 @@ nav a:hover {
 	to {transform: translateY(0px);}
 }
 
+@keyframes fadeUp {
+	0% {
+		background-color: #d07b7b00;
+		color: rgba(0, 0, 0, 0);
+	}
+	10% {
+		background-color: #d07b7b;
+		color: black;
+	}
+	75% {
+		background-color: #d07b7b;
+		color: black;
+	}
+	100% {
+		background-color: #d07b7b00;
+		color: rgba(0, 0, 0, 0);
+	}
+}
+
 /* add work modal style */
 #add-img {
 	background-color: #E8F1F6;
@@ -647,4 +648,13 @@ nav a:hover {
 .dropdown-content li:hover {
 	background-color: #cfcfcf60;
 	cursor: pointer;
+}
+
+/*media queries*/
+
+@media screen and (max-width: 768px)
+{
+	.modal-wrapper {
+		padding: 56px 60px 40px 60px;
+	}
 }

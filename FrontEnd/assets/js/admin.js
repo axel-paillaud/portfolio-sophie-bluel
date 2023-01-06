@@ -47,7 +47,6 @@ function addIconWord(element, icon, string) {
 }
 
 if (token != null) {
-    console.log("You are logged in as administrator");
     let login = document.querySelector("nav ul li a[href='login.html']");
     let headerEditionElt = document.getElementById('header-edition-mode');
 

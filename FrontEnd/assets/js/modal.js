@@ -61,7 +61,7 @@ if (token != null) {
                 <small>jpg, png : 4mo max</small>
             </div>
             <label for="title">Titre</label>
-            <input id="title" class="input-field" name="title" type="text" required>
+            <input id="title" class="input-field" name="title" type="text" maxlength="45" required>
             <label for="category">Catégorie</label>
             <div class="dropdown">
                 <button class="input-field dropbtn" data-id="1" type="button" id="category" name="category" required>
@@ -250,7 +250,7 @@ if (token != null) {
         addWorkForm["submit-btn"].addEventListener('click', function(event) {
             event.preventDefault();
 
-            if ( addWorkForm["title"].value === "" || addWorkForm["category"].dataset.id === "" || !userImage) {
+            if ( addWorkForm["title"].value === "" || addWorkForm["category"].dataset.id === "" || !userImage || addWorkForm["title"].value.length > 46) {
                 errorMessage();
             }
             else {
