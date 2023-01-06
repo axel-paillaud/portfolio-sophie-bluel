@@ -41,49 +41,14 @@ if (token != null) {
         document.querySelector('.js-modal').addEventListener('click', openModal);
     }
 
-    //add title, div and button to edit gallery inside the modal window
-    function addGalleryContent() {
-        let closeButton = document.createElement('button');
-        let iconClose = document.createElement('i');
-        let addImgButton = document.createElement('button');
-        let title = document.createElement('h2');
-        let galleryContener = document.createElement('div');
-        let lineBreak = document.createElement('hr');
-        let deleteGallery = document.createElement('a');
-
-        modalWrapper.appendChild(closeButton).id = "close-modal";
-        closeButton.appendChild(iconClose).classList.add("fa-solid", "fa-xmark");
-
-        modalWrapper.appendChild(title).innerHTML = "Galerie photo";
-        modalWrapper.appendChild(galleryContener).classList.add("gallery-modal");
-        modalWrapper.appendChild(lineBreak);
-        modalWrapper.appendChild(addImgButton).classList.add("btn-primary");
-        addImgButton.id = "add-img-btn";
-        addImgButton.innerHTML = "Ajouter une photo";
-        modalWrapper.appendChild(deleteGallery).classList.add("delete-link");
-        deleteGallery.setAttribute('href', "#");
-        deleteGallery.innerHTML = "Supprimer la galerie";
-
-        const btnAddImg = document.getElementById('add-img-btn');
-        const galleryModal = document.getElementsByClassName('gallery-modal')[0];
-        eventModal();
-
-        promiseWorks
-        .then(function() {
-            works.forEach(work => {
-                let figure = addWork(work, galleryModal, "éditer");
-                let iconButton = addDeleteIcons(figure, work);
-        
-                iconButton.addEventListener('click',deleteWorkAndRefresh);
-            });
-        })
-        .catch(function(err) {
-            console.log("L'erreur suivante sur l'ajout des travaux dans la fenêtre modale est survenue :");
-            console.log(err);
-        });
-    
-        btnAddImg.addEventListener('click', addWorkModal);
-    }
+    var htmlGalleryModal = `
+                            <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+                            <h2>Galerie photo</h2>
+                            <div class="gallery-modal"></div>
+                            <hr>
+                            <button id="add-img-btn" class="btn-primary">Ajouter une photo</button>
+                            <a class="delete-link" href="#">Supprimer la gallerie</a>
+                            `
 
     var htmlAddWork = `    <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
     <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
@@ -111,6 +76,39 @@ if (token != null) {
             <hr>
             <button type="submit" name="submit-btn" id="submit-work" class="btn-primary">Valider</button>
         </form>`
+
+    //add title, div and button to edit gallery inside the modal window
+    function addGalleryContent() {
+/*         let closeButton = document.createElement('button');
+        let iconClose = document.createElement('i');
+        let title = document.createElement('h2');
+
+        modalWrapper.appendChild(closeButton).id = "close-modal";
+        closeButton.appendChild(iconClose).classList.add("fa-solid", "fa-xmark");
+
+        modalWrapper.appendChild(title).innerHTML = "Galerie photo"; */
+        modalWrapper.innerHTML = htmlGalleryModal;
+
+        const btnAddImg = document.getElementById('add-img-btn');
+        const galleryModal = document.getElementsByClassName('gallery-modal')[0];
+        eventModal();
+
+        promiseWorks
+        .then(function() {
+            works.forEach(work => {
+                let figure = addWork(work, galleryModal, "éditer");
+                let iconButton = addDeleteIcons(figure, work);
+        
+                iconButton.addEventListener('click',deleteWorkAndRefresh);
+            });
+        })
+        .catch(function(err) {
+            console.log("L'erreur suivante sur l'ajout des travaux dans la fenêtre modale est survenue :");
+            console.log(err);
+        });
+    
+        btnAddImg.addEventListener('click', addWorkModal);
+    }
 
     const deleteWorkAndRefresh = async function(e)  {
         let id = e.target.dataset.id;
