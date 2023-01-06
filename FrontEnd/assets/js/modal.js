@@ -41,16 +41,15 @@ if (token != null) {
         document.querySelector('.js-modal').addEventListener('click', openModal);
     }
 
-    var htmlGalleryModal = `
-                            <h2 id="title-modal"></h2>
-                            <div class="gallery-modal"></div>
-                            <hr>
-                            <button id="add-img-btn" class="btn-primary">Ajouter une photo</button>
-                            <a class="delete-link" href="#">Supprimer la gallerie</a>
-                            `
+    var htmlGalleryModal =
+        `<h2 id="title-modal"></h2>
+        <div class="gallery-modal"></div>
+        <hr>
+        <button id="add-img-btn" class="btn-primary">Ajouter une photo</button>
+        <a class="delete-link" href="#">Supprimer la gallerie</a>`
 
-    var htmlAddWork = `
-        <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+    var htmlAddWork =
+        `<button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
         <h2 id="title-modal"></h2>
         <form id="add-work-form" class="form-full" method="post" enctype="multipart/form-data">
             <div id="add-img">
@@ -132,6 +131,8 @@ if (token != null) {
                 }
             };
             e.target.parentNode.style.display = "none"; //clear the element from DOM
+            resetDOM(gallery);
+            addAllWorks(works, gallery);
         })
         .catch(function(err) {
             console.log("Une erreur sur la suppression d'un travail est survenue");
@@ -271,8 +272,14 @@ if (token != null) {
                 })
                 .then(function(res) {
                     if (res.ok) {
-                        location.href = "index.html";
-                        return;
+                        resetDOM(gallery);
+                        getWorks()
+                        .then(function() {
+                            addAllWorks(works, gallery);
+                        })
+                        .then(function() {
+                            document.getElementById('back-btn').click();
+                        })
                     }
                     else {
                         console.log("Une erreur sur l'envoi d'un ouvrage est survenue.");
