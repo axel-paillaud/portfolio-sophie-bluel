@@ -4,7 +4,7 @@ const categoriesURI = "http://localhost:5678/api/categories";
 //Global variable here to select this class only once, and not multiple time
 //inside the forEach loop of addAllWorks
 var gallery = document.getElementsByClassName("gallery")[0];
-var works = [];
+var works;
 
 //delete all works in the DOM
 function resetDOM(element) {
@@ -104,7 +104,7 @@ function addEventToCategories(works, element) {
     });
 }
 
-//Filters categories
+//filters categories
 function filtersCategories(works, categoryId, element) {
     resetDOM(gallery);
 
