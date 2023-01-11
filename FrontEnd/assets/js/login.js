@@ -2,12 +2,6 @@ const loginURI = "http://localhost:5678/api/users/login";
 const form = document.getElementsByClassName("form-primary")[0].elements;
 let alreadyMsgError = false;
 
-//fake user for test, we have to get the input from the login form
-const sophie = {
-    email: 'sophie.bluel@test.tld',
-    password: 'S0phie'
-};
-
 function getUserLog() {
     let email = form["email"].value;
     let password = form["password"].value;
