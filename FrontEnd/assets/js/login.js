@@ -43,11 +43,11 @@ form["submit-login"].addEventListener('click', function(event) {
         else {
             //here show the html error message
             showErrorMsg();
-            return 0;
+            return 1;
         }
     })
     .then(function(value) {
-        if (value !== 0) {
+        if (value !== 1) {
             sessionStorage.setItem("token", value.token);
             location.href = "index.html";
         }

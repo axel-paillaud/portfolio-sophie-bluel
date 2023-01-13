@@ -88,9 +88,6 @@ if (token != null) {
 
     //add modal gallery content
     function addGalleryContent() {
-       /*  let title = document.createElement('h2'); */
-
-        /* modalWrapper.appendChild(title).innerHTML = "Galerie photo"; */
         modalWrapper.innerHTML = htmlGalleryModal;
         addTemplateModal("Galerie photo");
 
