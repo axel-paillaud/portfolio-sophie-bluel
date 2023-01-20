@@ -201,7 +201,7 @@ if (token != null) {
         });
     }
 
-    //get image the user just add
+    //get image the user just add, and update thumbnail
     function getUserImage() {
         let imageInput = document.getElementById('image-file');
         imageInput.addEventListener('change', function(value) {
@@ -215,7 +215,7 @@ if (token != null) {
         });
     }
 
-    //update thumbnails img
+    //read file the user add
     function updateImg(imgElt, userInput) {
         imgElt.classList.add('img-thumbnails');
         imgElt.file = userInput;
