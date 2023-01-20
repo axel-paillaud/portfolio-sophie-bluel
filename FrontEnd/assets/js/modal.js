@@ -124,7 +124,7 @@ if (token != null) {
             id = parseInt(id);
             for (let i = 0; i < works.length; i++) { //update works array
                 if (works[i].id === id) {
-                    works.splice(i, i);
+                    works.splice(i, 1);
                 }
             };
             e.target.parentNode.style.display = "none"; //clear the element from DOM
