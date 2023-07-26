@@ -1,4 +1,4 @@
-const loginURI = "http://localhost:5678/api/users/login";
+const loginURI = "/api/users/login";
 const form = document.getElementsByClassName("form-primary")[0].elements;
 let alreadyMsgError = false;
 
