@@ -1,5 +1,5 @@
-const worksURI = "http://localhost:5678/api/works";
-const categoriesURI = "http://localhost:5678/api/categories";
+const worksURI = "/api/works";
+const categoriesURI = "/api/categories";
 
 //Global variable here to select this class only once, and not multiple time
 //inside the forEach loop of addAllWorks
