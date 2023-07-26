@@ -43,12 +43,16 @@ function addWork(works, element, title) {
     let img = document.createElement("img");
     let figcaption = document.createElement("figcaption");
 
+    //Remove localhost:<port>/ on the url
+    let imageName = works.imageUrl.split('/').pop();
+    let url = '/images/' + imageName;
+
     //Add image, attribute and title to the DOM
     element.appendChild(figure).appendChild(img)
-    .setAttribute('src', works.imageUrl);
+    .setAttribute('src', url);
 
     img.setAttribute('alt', works.title);
-    img.setAttribute('crossorigin', 'anonymous');
+    //img.setAttribute('crossorigin', 'anonymous');
     figure.appendChild(figcaption)
     .innerHTML = title;
     return figure;
