@@ -7,7 +7,16 @@ const swaggerUi = require('swagger-ui-express')
 const yaml = require('yamljs')
 const swaggerDocs = yaml.load('swagger.yaml')
 const app = express()
-app.use(cors())
+
+// Define CORS options
+const corsOptions = {
+    origin: '*', // Replace '*' with the origin(s) you want to allow
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Add the HTTP methods you want to support
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  };
+
+app.use(cors(corsOptions))
 app.use(express.json())
 
 app.use(express.urlencoded({ extended: true }))
